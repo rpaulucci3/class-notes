@@ -1,0 +1,95 @@
+\documentclass{exam}
+\input amssym.tex
+
+\begin{document}
+	\textbf{1. If $n = ab$ then $a \leq \sqrt{n} \lor b \leq \sqrt{n}$ with $n, a, b \in \Bbb Z^+$}
+	
+	Proof by contraposition:
+	
+	\begin{tabular}{c|c}
+		Step&Rule\\
+		\hline
+		$\neg(a \leq \sqrt{n} \lor b \leq \sqrt{n})$ & Assume $\neg q$\\
+		
+		$a \leq \sqrt{n} \wedge b \leq \sqrt{n}$ & DeMorgan's\\
+		
+		$a > \sqrt{n} \wedge b > \sqrt{n}$ & Definiton of $\leq$\\
+		
+		$ab > \sqrt{n}\sqrt{n}$ & Multiply LHSs + RHSs\\
+		
+		$ab > n$ & Multiply\\
+	\end{tabular}
+	
+	Therefore, $ab \neq n$ by definition of $>, =$. Note this is $\neg p$.
+	
+	Conclusion: I have shown that, assuming $\neg q$ leads to $\neg p$, hence $p \rightarrow q$. \newline
+	
+	\textbf{2. If $m$ and $n$ are perfect squares, then $mn$ is a perfect square.}
+	
+	Definition: The integer $x$ is a perfect square if $x = a^2$, with $x, a \in \Bbb Z$.
+	
+	Direct proof:
+	
+	\begin{tabular}{c|c}
+		Step&Rule\\
+		\hline
+		$m$ is a perfect square. $n$ is a perfect square. &Assume $p$.\\
+		
+		$m = a^2, a \in \Bbb Z$&\\
+		
+		$n = b^2, b \in \Bbb Z$&\\
+		
+		$mn = a^2 b^2$ &Multiply LHSs + RHSs\\
+		
+		$mn = (ab)^2$ &Math.\\
+	\end{tabular}
+	
+	Hence $mn$ is a perfect square, by definition, where $mn = c^2$, $c=ab$, with $c \in \Bbb Z$. This is our $q$ proposition.
+	
+	Conclusion: Assuming $p$ leads to $q$, hence $p \rightarrow q$.\newline
+	
+	\textbf{3. $\forall x \exists y \exists z (x=y^2 + z^2)$ with $y,z \in \Bbb Z$ and $x \in \Bbb Z^+$}
+	
+	Proof by counterexample (used to prove a claim is false.)
+	
+	See $x=3$.
+	
+	$3 \in \Bbb Z^+$ and yet no sum of $y^2$ and $z^2$ will yield $3$.
+	
+	Let's look at the smallest perfect squares.
+	
+	\begin{tabular}{c}
+		$0^2 = 0$\\
+		$-1^2 = 1^2$ = 1\\
+		$-2^2 = 2^2 = 4$\\
+	\end{tabular}
+	
+	And these continue in increasing order.
+	
+	A sum of 3 could allow some pair of 0 or 1. Yet,
+	
+	\begin{tabular}{c}
+		$0+0=0$\\
+		$0+1=1$\\
+		$1+0=1$\\
+		$1+1=2$\\
+	\end{tabular}
+	
+	Any larger sum overshoots 3.
+	
+	Conclusion: $x=3$ fails, so this claim is false.\newline
+	
+	
+	\textbf{4. }
+	
+	Proof by contradiction
+	
+	Instead of starting from $p \rightarrow q$, we'll start from the following:
+	
+	$\neg (p \rightarrow q)$
+	
+	Material implication: $\neg(\neg p \lor q)$
+	
+	Assume $p \wedge \neg q$. If we find $p \wedge \neg q \wedge q$, there's a contradiction. Likewise for $\neg p \wedge p \wedge \neg q$.
+	
+\end{document}

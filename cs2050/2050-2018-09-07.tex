@@ -1,0 +1,82 @@
+\documentclass{exam}
+\input amssym.tex
+
+\begin{document}
+	\section{1.7: Intro to Proofs}
+
+	\begin{tabular}{c|c|c}
+		Technique&Assume&Show\\
+		\hline
+		direct proof&$p$&$q$\\
+		proof by contraposition&$\neg q$&$\neg p$\\
+		vacuous proof&(nothing)&$\neg p$ ($p$ is always false)\\
+		trivial proof&(nothing)&$q$($q$ is always true)\\
+		proof by contradiction&$p \wedge \neg q$&$?$\\
+	\end{tabular} \newline
+
+	Prove p $\rightarrow$ q.
+	
+	1) Assume p is true.
+	
+	2) Work in definitions. Do math, do logic.
+	
+	3) q is then also true.\newline
+	
+	Definition. An integer $n$ is even if there exists an integer $k$ where $n = 2k$\newline
+	
+	Definition. An integer $n$ is odd if there exists an integer $k$ where $n = 2k + 1$\newline
+	
+	\textbf{Direct proof: The sum of two even integers is even.}
+	
+	$p \rightarrow q$
+	a, b $\in {\Bbb Z}$
+	
+	p: a and b are even
+	
+	q: a + b is even.
+	
+	a and b are even (assume p)
+	
+	a = 2k, k $\in {\Bbb Z}$ (by definition even)
+	
+	b = 2k', $k' \in {\Bbb Z}$ (by definition even)
+
+	a+b = 2k + 2k' (add LHS, RHS)
+	
+	a+b = 2(k+k') (factor)
+	
+	Note: by definition of even, a+b is even, having form a+b = 2k' where k'' = k + k', k'' $\in {\Bbb Z}$
+	
+	Integers are closed with respect to addition. 
+	
+	Conclusion: I've shown that assuming $p$ leads to $q$ being true, hence $p \rightarrow q$.\newline
+	
+	\textbf{Direct proof: If $n$ is odd, then $n^2$ is odd.}
+	
+	Proof by contraposition: If $n$ is an integer and $3n+2$ is odd, then $n$ is odd.
+	
+	$p \rightarrow q$
+	
+	$p: 3n+2$ is odd
+	
+	$q: n$ is odd ($n \in {\Bbb Z}$)
+	
+	$\neg$ ($n$ is odd) (assume $\neg q$)
+	
+	$n$ is even (by definition of even and odd)
+	
+	$n = 2k, k \in {\Bbb Z}$ (by definition of even)
+	
+	$3n+2$ Let's examine this.
+	
+	$3(2k) + 2$ Substitute for $n$.
+	
+	$2(3k+1)$ Factor
+	
+	Notice this is $\neg p$, the fact than $3n+2$ is even.
+	
+	Matching the format of $2k'$, where $k' = 3k+1, k' \in \Bbb Z$
+	
+	Conclusion: since $\neg q$ leads to $\neg p$, I've shown $p \rightarrow q$.
+	
+\end{document}
