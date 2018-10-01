@@ -1,0 +1,87 @@
+\documentclass{exam}
+\usepackage{amssymb,amsmath}
+\begin{document}
+	
+	\section{2.2: Sets}
+	
+	Use set builder notation and logical equivalencies to show De Morgan's law for sets holds.
+	
+	$\bar{A \cap B} = \bar{A} \cup \bar{B}$ 
+	
+	$\bar{A \cap B} = \{ x \ |\ x \notin A \cap B\} $  (definition of complement)
+	
+	$= \{ x \ |\ \neg(x \in A \cap B) \} $ (definition of $\notin$)
+	
+	$= \{ x \ |\ \neg(x \in A \wedge x \in B) \} $ (definition of $\cap$)
+	
+	$= \{ x \ |\ \neg(x \in A) \lor \neg(x \in B) \} $ (De Morgan's for logic)
+	
+	$= \{ x \ |\ (x \notin A) \lor (x \notin B) \} $ (definition of $\notin$)
+	
+	$= \{ x \ |\ (x \in \bar{A}) \lor (x \in \bar{B}) \} $ (definition of complement)
+	
+	$= \{ x \ |\ x \in \bar{A} \cup \bar{B} \} $ (definition of $\cup$)
+	
+	$= \bar{A} \cup \bar{B}$
+	
+	$\therefore$ It is true, as shown, that $\bar{A \cap B} = \bar{A} \cup \bar{B}$.\\
+	
+	\textbf{Membership table}
+	
+	$A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$ Distributive property
+	
+	Table indicates if $x$ belongs to set $A, B, C \dots$
+	
+	\begin{tabular}{c|c|c|c|c|c|c|c}
+		$A$&$B$&$C$&$(B \cup C)$&$A \cap (B \cup C)$&$A \wedge B$&$A \wedge C$&$(A \cap B) \cup (A \cap C)$\\
+		\hline
+		1&1&1&1&1&1&1&1\\
+		1&1&0&1&1&1&0&1\\
+		1&0&1&1&1&0&1&1\\
+		1&0&0&0&0&0&0&0\\
+		0&1&1&1&0&0&0&0\\
+		0&1&0&1&0&0&0&0\\
+		0&0&1&1&0&0&0&0\\
+		0&0&0&0&0&0&0&0\\
+	\end{tabular}
+	
+	Since for every category of elements the result is the same, $A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$.
+	
+	$\cap$ is like multiply.
+	
+	$\cup$ is like add.
+	
+	\section{Functions}
+	
+	Function $f$ from $A$ to $B$ (non-empty sets): $f : A \rightarrow B$
+    
+    Examples:\\
+    %TODO: Insert function sets diagram
+	
+	$f :\ $characters$ \rightarrow $grades (domain to co-domain)
+    
+    (The function above is not one-to-one and not onto.)
+	
+    abs : $\Bbb Z \rightarrow \Bbb Z$ (range: $\Bbb Z^{\geq 0}$)\\
+    
+    %TODO: Example of 1-to-1 but not onto; example of not 1-to-1 but onto; example of 1-to-1 and onto.
+    
+    When a function is one-to-one and onto, we can find an inverse function $f^{-1}$.
+    
+    $f$ is one-to-one $\leftrightarrow$ $\forall a \forall b (a \neq b \rightarrow f(a) \neq f(b))$, with $a,b \in$ domain of $f$.
+    
+    $f$ is onto if $\forall y \exists x (f(x) = y)$, with $x \in$ domain of $f$, $y \in$ co-domain of $f$.\\
+    
+    In relational databases:
+    
+    $f : A \rightarrow B \subseteq A \times B$
+    
+    $A = \{1,2\}$
+    
+    $B = \{10,20,30\}$
+    
+    $A \times B = \{(1,10),(1,20),(1,30),(2,10),(2,20),(2,30)\}$ (all theoretically possible transitions; Cartesian product.)
+    
+    We can define the "real" transitions to be $\{(1,10),(2,10)\}$, using the function.
+    
+\end{document}
