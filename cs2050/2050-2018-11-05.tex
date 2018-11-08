@@ -1,0 +1,83 @@
+\documentclass{exam}
+\usepackage{amssymb,amsmath,listings,parskip}
+\begin{document}
+	
+    \section{6.1: Counting}
+    
+    \textbf{Food truck}
+    
+    1 dollar: cupcake
+    
+    1 type of cake, 1 type of icing always.
+    
+    Cake: \{chocolate, blueberry, red velvet, peach, strawberry, vanilla\} (6 types)
+    
+    Icing: \{mango, vanilla, cream cheese, coffee\} (4 types)
+    
+    Product rule: $6 \cdot 4 = 24$\\
+    
+    \textbf{Pizza}
+    
+    3 dollars: pizza
+    
+    1 topping, sauce, crust always.
+    
+    Crust: \{thin, deep dish\} (2 types)
+    
+    Sauce: \{tomato, pesto, alfredo, BBQ\} (4 types)
+    
+    Topping: \{pineapple, pepperoni, mushrooms\} (3 types)
+    
+    (Extended) product rule: $2 \cdot 4 \cdot 3 = 24$\\
+    
+    1 free cupcake $\oplus$ 1 free pizza
+    
+    How many choices? Sum rule: $24 + 24 = 48$\\
+    
+    \textbf{Interns}
+    
+    12 offices (empty and unique)
+    
+    2 interns (Zim and Gir, unique)
+    
+    How many ways to have office assignments?
+    
+    If they must share an office: 12 possibilities.
+    
+    If they must NOT share an office: $12 \cdot 11$ possibilities.
+    
+    If sharing doesn't matter: $12 + 12 \cdot 11$ (there is no way to share and not share at the same time)\\
+    
+    \textbf{Car tag}
+    
+    Format: 3 letters and 4 numbers (LLLDDDD).
+    
+    26 possible letters, 10 possible numbers.
+    
+    Possibilities: $26^3 \cdot 10^4$
+    
+    If we want to avoid one certain sequence of 3 starting characters (that might be obscene), we would have $26^3 \cdot 10^4 - 10^4$ possibilities (inclusion-exclusion technique). Note we are not taking into account the spelling itself.\\
+    
+    How many bit strings are of length 7? $2^7$\\
+    
+    \textbf{BASIC language variable names}
+    
+    Rules: 
+    
+    1. Starts with a letter (one of 26 letters), and is otherwise alphanumeric (not case-sensitive).
+    
+    2. Maximum length is 2.
+    
+    3. Cannot use a reserved word. There are 5 "collisions" (reserved words of length 2).
+    
+    $V = V_1 + V_2$
+    
+    $V_1 = 26$
+    
+    $V_2 = 26 \cdot (26+10)$
+    
+    so $V = 962$
+    
+    Removing the 5 reserved word collisions, $V_f = 957$\\
+    
+    \end{document}

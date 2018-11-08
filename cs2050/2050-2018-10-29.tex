@@ -1,0 +1,39 @@
+\documentclass{exam}
+\usepackage{amssymb,amsmath,listings,parskip}
+\begin{document}
+	
+    \section{5.3: Recursion (continued)}
+    
+    \textit{Palindromes (cont.)}
+    
+    Base case: $\lambda \in P$ if $x \in \Sigma$ then $x \in P$.
+    
+    Recursive: if $x \in \Sigma$ and $w \in P$.
+    
+    then $xwx \in P$
+    
+    (note: this doesn't cover everything: $xxwxx \in P$)\\
+    
+    \textit{Length of a string}
+    
+    Basis step:
+    
+    length$(\lambda) = 0$
+    
+    Recursive step:
+    
+    if $w \in \Sigma^*$ and $x \in \Sigma$, then length($wx$) = length($w$) + 1\\
+    
+    
+    $\Sigma^{even}$: \textit{even-length strings over} $\Sigma$.
+    
+    Basis step:
+    
+    $\lambda \in \Sigma^{even}$
+    
+    Recursive step:
+    
+    if $w \in \Sigma^{even}$ and $x \in \Sigma$, $y \in \Sigma$, then $wxy \in \Sigma^{even}$
+    
+    
+\end{document}
