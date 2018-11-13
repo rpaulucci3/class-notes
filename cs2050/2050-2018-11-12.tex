@@ -1,0 +1,86 @@
+\documentclass{exam}
+\usepackage{amssymb,amsmath,listings,parskip}
+\begin{document}
+	
+    \section{6.3}
+    
+    We have a set $S$ of size $n$ and we will pick $r$ elements.
+    
+    $n = /S/ = 3$
+    
+    $S = \{a,b,c\}$
+    
+    There are two ways this can go.
+    
+    Imagine we want 2 of these. What do we want?
+    
+    $/ \{ \{a,b\}, \{a,c\}, \{b,c\} \} / = 3$
+    
+    If the order matters:
+    
+    $/ \{   <a,b>, <b,a>, <a,c>, <c,a>, <b,c>, <c,b>  \} /  = 6$
+    
+    Choose $r$ from $n$ elements.
+    
+    If the order of picking matters: \textit{permutation}. If not: \textit{combination}.\\
+    
+    \textbf{Runners}
+    
+    We have 100 runners. What is the number of winning permutations for first, second and third place? Everybody finishes, and there are no ties.
+    
+    $100 \cdot 99 \cdot 98$
+
+    Number of ways for the top 20:
+    
+    $P(100,20) = \frac{100!}{(100-20)!}$
+    
+    \textbf{Number of permutations of length $r$ from a set of $n$ elements:}
+    
+    $$P(n,r) = \frac{n!}{(n-r)!}$$\\
+    
+    \textbf{Students}
+    
+    $n = 4$ students
+    
+    $S = \{a,b,c,d \}$
+    
+    Take 2 students to a competition.
+    
+    $C(4,2) = / \{ \{a,b\}, \{a,c\}, \{a,d\}, \{b, c\}, \{b,d\}, \{c,d\} \} / = 6$
+    
+    There is no trivial way to "fill in the blanks" as in previous examples.
+    
+    Trying to to $4 \cdot 3 \cdot 2 \cdot 1$ would result in $4!/2!$, but this has to be "un-permuted" to avoid double-counting.
+    
+    Final result: $\frac{4!}{2! \cdot 2!}$\\
+    
+    \textbf{Marathon}
+    
+    There are 40000 runners, and 100 will be invited to an event. The order of invites does not matter.
+    
+    $C(40000,100) = \frac{40000!}{(40000 - 100)! \cdot 100!}$\\
+    \newpage
+    
+    \textbf{Number of combinations of length $r$ from a set of $n$ elements:}
+    
+    $$C(n,r) = \frac{n!}{(n-r)! \cdot r!}$$
+    
+    Note: $C(100,99) = C(100,1)$ (edge case)\\
+    
+    \textbf{Bit strings}
+    
+    Number of bit strings of length 8 having exactly six 1s.
+    
+    $n = 8,\ r = 6$
+    
+    $C(8,6) = \frac{8!}{(8-6)! \cdot 6!}$ (the order of picking the bits themselves does not matter)\\
+    
+    \textbf{Substrings}
+    
+    We have the alphabet $\{A,B,C,D,E,F,G,H\}$ and we want to form strings of length 8 that have $BED$ as a subtring.
+    
+    All permutations: $8!$
+    
+    Considering all possible positions of $BED: 6! \cdot 5! = 6!$
+    
+    \end{document}

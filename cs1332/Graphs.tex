@@ -1,0 +1,100 @@
+\documentclass{exam}
+\usepackage{amssymb,amsmath,listings,parskip}
+\begin{document}
+    
+    \textbf{\Large{Graph Traversal}}
+    
+    \section{BFS and DFS}
+    
+    Keep track of visited list and return list separately.
+    
+    Breadth-First Search (BFS):
+    
+    \begin{lstlisting}
+    enqueue start, adding visited set
+        
+    while queue not empty:
+        v = queue.dequeue
+        add v to return list
+        
+        for each neighbor u of v:
+            if u not in visited:
+                enqueue u
+                add u to visited
+    \end{lstlisting}
+    
+    Depth-First Search (DFS) iteratively:
+    
+    \begin{lstlisting}
+    push start onto stack
+    
+    while stack not empty:
+        v = stack.pop
+        if v not visited:
+            add v to return list
+            add v to visited set
+            
+            for each neighbor u of v:
+                if u not in visited:
+                push u onto stack
+                # do not add to visited after pushing! 
+    \end{lstlisting}
+    
+    DFS recursively: 
+    
+    \begin{lstlisting}
+    #Needs a public wrapper to instantiate the list
+    private function dfs(start, list, visited):
+        if v not in visited:
+            add v to visited
+            add v to list
+            
+            for each neighbor u of v:
+                dfs(u, list, visited)
+    \end{lstlisting}
+    
+    Time complexity: $O(|V| + |E|)$, where $V$ and $E$ are the amounts of vertices and edges, respectively.
+    \newpage
+    
+    \section{Dijkstra's Algorithm}
+    
+    $\bullet$ Weighted edges
+    
+    $\bullet$ Finds shortest path
+    
+    $\bullet$ Structures: visited set, priority queue (VDP), start, map of distances
+    
+    \textbf{Algorithm:}
+    
+    \begin{lstlisting}
+    instantiate map
+    for all vertices: #(keys)
+        initialize value to infinity
+        
+    priorityqueue.add(start, 0)
+    #or map.put(start, 0) and add neighbors to priorityqueue
+        
+    while priorityqueue not empty and visited.size < number of vertices:
+        v = priorityqueue.remove
+        if v is not visited:
+            mark v as visited
+            update value for v in map
+            for all neighboring VDPs: #obtained from graph.getAdjList().get(v.vertex)
+                newPath = v.distance + u.distance
+                if newPath to u's vertex < map.get(u.vertex):
+                    add VDP(u.vertex, newPath)
+                
+    \end{lstlisting}
+    
+    To find the neighbors of a vertex v: graph.getAdjList().get(v)
+    
+    Time complexity: $O[(|E| + |V|)\cdot \log |V|]$
+    
+    \section{Kruskal's Algorithm}
+    
+    Minimum Spanning Tree algorithm.
+    
+    %TODO: add notes from draft%
+    
+    
+\end{document}
