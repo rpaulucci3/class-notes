@@ -1,0 +1,61 @@
+\documentclass[english]{exam}
+\usepackage{babel}
+\usepackage{amssymb,amsmath,listings,parskip}
+\usepackage{csquotes}
+\MakeOuterQuote{"}
+
+\begin{document}
+	
+    \section{6.5: Generalized Permutations and Combinations}
+    
+    How many strings of length 10 are there, considering 26 letters (A-Z)?
+    
+    By the product rule, $26^{10}$.\\
+    
+    \textbf{Fruit: "Stars and Bars" problem}
+    
+    3 types of fruit. Pick 4 pieces of fruit ($r=4$).
+    
+    Apples, oranges and pears (all treated equal to each other within their group.)
+    
+    We have "infinite slices", and we can put the names of fruit alphabetically and represent each possible choice as a bitstream.
+    
+    For example, a choice of no apples, no oranges, and 4 pears is 110000. The 1s represent "dividers" and the 0s represent fruit choices.
+    
+    011000 is 1 apple, 0 oranges, 3 pears. 
+    
+    How many bitstrings of length 6 exist containing 4 zeros?
+    
+    $r = 4,\ n = 3$ types
+    
+    $C(n+r-1, r) = C(3+4-1, 4) = C(6,4)$\\
+    
+    \textbf{Dollar bills}
+    
+    Take 4 bills from a cash register. There are slots for \$20, \$10, \$5 and \$1.
+    
+    $C(4+4-1, 4) = C(7,4)$ ways to do this.\\
+    
+    \textbf{Cookies}
+    
+    4 types of cookies, a customer grabs 6 cookies to go.
+    
+    A customer's bag must have all flavors.
+    
+    $C(4+2-1, 2) = C(5,2)$.\\
+    
+    \textbf{Sum}
+    
+    $a+b+c = 13$, with $a,b,c \in \mathbb Z^{\geq 0}$
+    
+    $13 + 0 + 0 = 13$
+    
+    $\vdots$
+    
+    $0 + 0 + 13 = 13$
+    
+    $C(15,13)$ ways to do this. (3 [types of variables] + 13 [sum] $- 1$)
+    
+    If we change to $a,b,c \in \mathbb Z^+$, we have $C(3 + 10 - 1,\ 10) = C(12,10)$. We start with 3 and try to find which variables can add 10 more.
+    
+    \end{document}

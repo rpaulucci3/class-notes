@@ -1,0 +1,78 @@
+\documentclass[english]{exam}
+\usepackage{babel}
+\usepackage{amssymb,amsmath,listings,parskip}
+\usepackage{csquotes}
+\MakeOuterQuote{"}
+
+\begin{document}
+	
+    \section{Practice exam 4}
+    
+    1. Basis step:
+    
+    $f(0) = 6$
+    
+    $f(1) = 10$
+    
+    Recursive step: $f(n+2) = f(n+1) + f(n)$\\
+    
+    2. Shortest members: $\{1,111,11111,1111111,...\}$\\
+    
+    3. Given $f(0) = 3$, $f(n) = 2 \cdot f(n-1) + 6$
+    
+    $f(1) = 12;\ f(2) = 30$\\
+    
+    4. $\Sigma = \{0,1\}$
+    
+    Base case: $\lambda \in P,\ 0 \in P, 1 \in P$
+    
+    Recursive step: if ($x \in P$ and $w \in \Sigma$) $\rightarrow wxw \in P$\\
+    
+    5. Base case: $1 \in S$
+    
+    Recursive step: $x \in S \rightarrow x/3 \in S$\\
+    
+    6. flipbits($\lambda$) = $\lambda$
+    
+    flipbits(0) = 1; flipbits(1) = 0\\
+    
+    Recursive step: $\Sigma = \{0,1\}$. $\Sigma^*$ is the Kleene closure (all possible strings that can be formed from the alphabet $\Sigma$)
+    
+    (b $\in \Sigma$ and $x \in \Sigma^*$)
+    
+    flipbits(bx) = flipbits(b) + flipbits(x)\\
+    
+    \section{6.5 Practice problems}
+    
+    1. TATTLETALES
+    
+    Permutations: $\frac{11!}{4!2!2!2!}$\\
+    
+    2. 200 students, 4 houses. Using \textit{Stars and bars}, we have $C(200+(4-1), (4-1)) = C(203, 200) = C(203, 3)$ possible ways to assign students to houses.\\
+    
+    3. (a) Equation $a_1 + a_2 + a_3 + a_4 + a_5 + a_6 = 100$. Using \textit{Stars and bars}, we have $C(100+(6-1), (6-1)) = C(105, 5)$ possible ways to solve it.
+    
+    (b) If we reqire $a_1, a_2 \geq 2$, then we have $C(96+(6-1), (6-1)) = C(101,5) = C(101, 96)$ ways.
+    
+    (c) Equation $a_1 + a_2 + a_3 + a_4 + a_5 + a_6 \leq 100$, where $a_n$ are in $\mathbb Z^{\geq 0}$. We have $C(100+(7-1), (7-1)) = C(106,6)$ ways. There is a "hidden" category created.\\
+    
+    \section{In-lecture worksheet}
+    
+    \textbf{7. Laundry:} 5 T-shirts, 6 shorts, 3 dress pants, 4 shirts.
+    
+    $5!6! + 3!4!$
+    
+    $5 \cdot 6 + 3 \cdot 4 = 42$\\
+    
+    \textbf{8. String}
+    
+    CABDEFGH
+    
+    Treat CAB as one letter and permute. This results in $6!$.\\
+    
+    \textbf{9. Bit string}
+    
+    Length 8, twice as many 0s than 1s. The answer is 0. 
+    
+    
+    \end{document}
