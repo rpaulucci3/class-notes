@@ -1,0 +1,52 @@
+\documentclass[english]{exam}
+\usepackage{babel}
+\usepackage{amssymb,amsmath,listings,parskip}
+\usepackage{csquotes}
+\MakeOuterQuote{"}
+
+\begin{document}
+	
+    \section{Concepts (cont.)}
+    
+    A DBMS has 3 purposes: to define, manipulate, and provide access to the database.
+    
+    Database applications have 2 purposes: to query and modify/update the database.
+    
+    Columns are \textit{attributes}. Rows are \textit{entities}. Table names are \textit{relations}.
+    
+    DBMS Catalog stores not only the data, but also metadata about them.
+    
+    \section{Characteristics of the DB approach}
+    
+    $\bullet$ Data Abstraction: hide the implementation details. Give users a conceptual view of the data and its relations. Allow changes without other levels of conceptualization needing to be aware.
+    
+    $\bullet$ Self-describing data (metadata).
+    
+    $\bullet$ Support for multiple views of the data.
+    
+    \section{Database users}
+    
+    $\bullet$ Actors of the scene: people who use the DB, including those who create applications for it.
+    
+    $\bullet$ Workers behind the scene: people who built the DBMS.
+    
+    \section{Architecture}
+    
+    A data model has \textit{concepts}, \textit{operations} (transactions, queries, updates) and \textit{constraints} (datatypes and values that are legal; can or can't be null, must have a unique ID etc.)
+    
+    Data models can be \textit{conceptual}, \textit{physical} or \textit{self-describing}.
+    
+    Database schema: structure
+    
+    Database state: a snapshot of the DB at a particular moment in time\\
+    
+    \textbf{The Three-Schema Architecture: }
+    
+    $\bullet$ End-users are at the external level (with external views.) 
+    
+    $\bullet$ Conceptual level: conceptual schema  (first name, last name, address, phone number...)
+    
+    $\bullet$ Internal level: internal schema (Strings, floating-point numbers, integers, booleans etc.), linked to the binary form of the data stored in memory.
+    
+    
+\end{document}
