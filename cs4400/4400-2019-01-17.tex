@@ -1,0 +1,51 @@
+\documentclass[english]{exam}
+\usepackage{babel}
+\usepackage{amssymb,amsmath,listings,parskip}
+\usepackage{csquotes}
+\MakeOuterQuote{"}
+
+\begin{document}
+	
+    \section{Relational Algebra}
+    
+    SQL is a standard. MySQL doesn't implement all the standards, but includes extensions.
+    
+    Relational algebra is a family of algebras used for modelling the data stored in relational databases, and defining queries on it.\\
+    
+    We can have a command like SELECT * FROM 
+    
+    WHERE (filter out rows) 
+    
+    GROUP BY 
+    
+    HAVING (filter out groups) 
+    
+    ORDER BY\\
+    
+    \textbf{Aggregate functions:} count, sum, min, max, avg\\
+    
+    \textbf{Relational algebra symbols:}
+    
+    select: $\sigma$
+    
+    project: $\pi$
+    
+    rename: $\rho$
+    
+    order by: $\tau$
+    
+    group by: $\gamma$
+    
+    natural join: $\bowtie$
+    
+    Cartesian product: $\times$\\
+    
+    Example: $\pi$ fname, lname ($\sigma$ fname = 'john', lname = 'smith' EMPLOYEE)\\
+    
+    \textbf{Set operations}
+    
+    $\cup$ union, $\cap$ intersection, $-$ difference, $\times$ cross product
+    
+    
+    
+\end{document}
