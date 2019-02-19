@@ -1,0 +1,33 @@
+\documentclass[english]{exam}
+\usepackage{babel}
+\usepackage{amssymb,amsmath,listings,parskip}
+\usepackage{csquotes}
+\MakeOuterQuote{"}
+
+\begin{document}
+	
+    \section{Entity Relationship Model}
+    
+    An \textit{entity} exists in a mini-world. An entity relationship (ER) model defines relationships between entities.
+     
+    Examples: PROFESSOR has 0 or more STUDENT. STUDENT has 0 or more ASSIGNMENT.
+     
+    These decisions have to be taken before the database is created.
+     
+    Attributes are characteristics of entities. Each attribute has its \textit{value}, with a certain data type.
+    
+    Attributes can be simple (e.g.: an ID number), composite (e.g.: an address with number, street, city, state etc.) or multi-valued (e.g.: previous addresses). Attributes can also be calculated.\\
+    
+    In a diagram, there are shapes for objects: an entity is represented by a rectangle with capital letters; a relationship by a diamond; and an attribute by an oval. \textit{Keys} have underlines under their name. Concentric ovals are multi-valued attributes.
+
+    An entity CAR, for example, can be represented by a specific entity (e.g.: John's car.) The current set of specific entities in a given type is the state of the entities.\\
+    
+    Each edge in the diagram is read "name $\rightarrow$ line $\rightarrow$ relationship $\rightarrow$ number." If lines are not double, we read "may take..."
+    
+    A \textit{weak entity} cannot be distringuished by its attributes. It must have an identifying relationship.
+    
+    Relations can be recursive.
+    
+    \textit{Discriminators} are not strong enough to be a key.
+     
+\end{document}
