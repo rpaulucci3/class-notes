@@ -1,0 +1,454 @@
+\documentclass[english,openany]{book}
+\usepackage[utf8]{inputenc}
+\usepackage{babel}
+\usepackage{amssymb,amsmath,listings,parskip}
+\usepackage{csquotes}
+\MakeOuterQuote{"}
+
+\begin{document}
+
+    \title{Some notes from CS 1332: Data Structures and Algorithms}
+    \author{Rafael A. O. Paulucci}
+    \date{Fall 2018}
+
+    \maketitle
+
+    \tableofcontents
+
+    \lstset{frame=tb,
+    showstringspaces=false,
+    columns=flexible,
+    basicstyle={\small\ttfamily},
+    numbers=none,
+    breaklines=true,
+    breakatwhitespace=true,
+    tabsize=4
+    }
+
+    \chapter{Graphs}
+
+    \section{BFS and DFS}
+
+    Keep track of visited list and return list separately.
+
+    Breadth-First Search (BFS):
+
+    \begin{lstlisting}
+    enqueue start, adding visited set
+
+    while queue not empty:
+        v = queue.dequeue
+        add v to return list
+
+        for each neighbor u of v:
+            if u not in visited:
+                enqueue u
+                add u to visited
+    \end{lstlisting}
+
+    Depth-First Search (DFS) iteratively:
+
+    \begin{lstlisting}
+    push start onto stack
+
+    while stack not empty:
+        v = stack.pop
+        if v not visited:
+            add v to return list
+            add v to visited set
+
+            for each neighbor u of v:
+                if u not in visited:
+                push u onto stack
+                # do not add to visited after pushing!
+    \end{lstlisting}
+
+    DFS recursively:
+
+    \begin{lstlisting}
+    #Needs a public wrapper to instantiate the list
+    private function dfs(start, list, visited):
+        if v not in visited:
+            add v to visited
+            add v to list
+
+            for each neighbor u of v:
+                dfs(u, list, visited)
+    \end{lstlisting}
+
+    Time complexity: $O(|V| + |E|)$, where $V$ and $E$ are the amounts of vertices and edges, respectively.
+    \newpage
+
+    \section{Dijkstra's Algorithm}
+
+    $\bullet$ Weighted edges
+
+    $\bullet$ Finds shortest path
+
+    $\bullet$ Structures: visited set, priority queue (VDP), start, map of distances
+
+    \textbf{Algorithm:}
+
+    \begin{lstlisting}
+    instantiate map
+    for all vertices: #(keys)
+        initialize value to infinity
+
+    priorityqueue.add(start, 0)
+    #or map.put(start, 0) and add neighbors to priorityqueue
+
+    while priorityqueue not empty and visited.size < number of vertices:
+        v = priorityqueue.remove
+        if v is not visited:
+            mark v as visited
+            update value for v in map
+            for all neighboring VDPs: #obtained from graph.getAdjList().get(v.vertex)
+                newPath = v.distance + u.distance
+                if newPath to u's vertex < map.get(u.vertex):
+                    add VDP(u.vertex, newPath)
+
+    \end{lstlisting}
+
+    To find the neighbors of a vertex v: graph.getAdjList().get(v)
+
+    Time complexity: $O[(|E| + |V|)\cdot \log |V|]$
+
+    \section{Depth traversals}
+
+	Pattern of writing data at current node (C) recursing right (R) and left (L), in different orders.
+
+	Pre-order: CLR
+
+	In-order: LCR (outputs data in sorted order)
+
+	Post-order: LRC
+
+	Each should be implemented recursively and has complexity O(n).\\
+
+	\section{Breadth traversals}
+
+	Level order: nodes are arranged by depth. Not recursive.
+
+	1. Add root to a queue
+
+	2. Iteratively remove the next node from the queue
+
+	3. Record the removed node data
+
+	3. Enqueue the removed node's children\\
+
+	\section{Common errors (homework)}
+
+	Using compareTo with $-1, 0, 1$ instead of $< 0, 0, >0$.
+
+	When removing a node with 2 children, calling remove on the successor.
+
+	Forgetting to "reinforce" the root (it should be root = add(root,data)).
+
+	Doing depth traversal iteratively.
+
+	Doing level traversal recursively.
+
+	\chapter{Heaps}
+
+    \section{Properties}
+
+	$\bullet$ Shape: heaps are complete (each level is filled, except for the last one, which is filled left-to-right). Heaps are not BSTs.
+
+	$\bullet$ Order: min. heap (every node's data is less than the one of its children, and the smallest item is the root). Max. heap is the opposite (every node's data is greater than the one of its children, and the largest item is the root).\\
+
+	\section{Implementation}
+
+	Usually as an array, because complete trees do not have gaps.
+
+	We leave the 0 index blank, so that we can easily access children and parents.
+
+	For a node at index $i$, its parents would be at $\frac{i}{2}$ (floor, or integer division). Its left child would be at $2i$, and its right child, at $2i + 1$.
+
+	This structure requires less memory because we are not storing relations between parents and children.\\
+
+	\section{Operations}
+
+	\subsection{Adding}
+
+	1. Add a node at the end of the last level (that is, size + 1), to maintain shape property
+
+	2. Perform heapify/upheap to bring back the order property:
+
+	Compare the node with its parents. If the order property is violated, swap the node with its parent.
+
+	Continue swapping until the order property is not violated.\\
+
+	\subsection{Accessing the smallest/largest}
+
+	O(1), and it always corresponds to what is most efficient for the heap type (max/min).\\
+
+	\subsection{Removing}
+
+	1. Save the root data (as we will only remove root)
+
+	2. Move the data from the last node to the root that was just removed, to maintain shape property
+
+	3. Perform heapify down (in min heap, swap with smallest child)
+
+	Continue swapping until the order property is not violated.\\
+
+	\subsection{Building a heap}
+
+	Given an array of data with index 0 null, make a heap.
+
+	Option 1 would be to call add() on each data, but this would be O(n log n).
+
+	Option 2: Build Heap.
+
+	Start at index size/2 (the last index that has a child)
+
+	Call heapify down from index size/2 to index 1.
+
+	Complexity: O(n).
+
+	\begin{tabular}{c|ccccc}
+		 &add&remove&upheap&downheap&buildheap\\
+		\hline
+		average/worst&log n&log n&log n &log n &n\\
+	\end{tabular}
+
+	\section{Priority Queue}
+
+	ADT backed by a heap. A wrapper around a heap, with the same efficiencies.
+
+	enqueue: add; dequeue: remove
+
+	\chapter{Skip Lists}
+
+    Unique, probability-based data structure\\
+
+    \section{Structure}
+
+    Series of linked lists, each on a different level
+
+    Bottom level contains all the data
+
+    Each node has 4 pointers:
+
+     (left/right for nodes like in a normal linked list)
+
+     (up/down to point to linked list above and below)
+
+    Each level is in ascending order
+
+    Each level starts with a phantom node containing -$\infty$, and can end with a phantom node containing +$\infty$
+
+    Head pointer points to upper left -$\infty$ node.
+
+    The contents of each level are based on a coin flip.
+
+    Bottom: $n$ nodes; $2^{nd}$ level: $n/2$ nodes; $3^{rd}$ level: $n/4$ nodes \dots\\
+
+    \section{Searching}
+
+    Start at head
+
+    On a given level:
+
+    \quad iterate through LinkedList
+
+    \quad\quad if you find data 1, stop
+
+    \quad\quad if you find node containing data $>$ (data you are looking for), you know data you're looking for doesn't exist on that level.
+
+    \quad\quad use the previous node's down pointer to the next level
+
+    \quad\quad reiterate on this level.\\
+
+    \section{Adding}
+
+    Flip a coin repeatedly.
+
+    \quad if you get Heads, flip again and stop when you get Tails
+
+    \quad $n$ heads = $n$ of levels above the bottom level
+
+    \quad add empty levels to top if necessary (number of levels is capped at $\log n$)
+
+    \quad traverse the skip list to find where to add the node at bottom level
+
+    \quad\quad add the node immediately before the $1^{st}$ node greater than the data
+
+    \quad\quad after adding at the bottom, promote node to above levels based on the amount of heads.\\
+
+    \section{Removing}
+
+    Find the data to remove
+
+    If the data is found, remove from the level, drop down and repeat.\\
+
+    \section{Efficiency}
+
+    \begin{tabular}{c|c|c}
+        &average case&worst case\\
+        \hline
+        adding&&\\
+        removing&$O(\log n)$&$O(n)$\\
+        searching&&\\
+    \end{tabular}
+
+    Space complexity is $O(n)$ ($\sum_{i=0}^{\infty} \frac{1}{2^i}$) on average, and $O(n \log n)$ at worst.
+
+
+    \chapter{AVL Trees}
+
+    Binary trees that follow the order property and are height-balanced.
+
+    When a tree is height-balanced, all operations (add, remove, get) are $O(\log n)$.
+
+    This avoids the degenerate case for BSTs (in which they become basically a "linked list").\\
+
+    \section{Properties}
+
+    $\bullet$ Nodes: 4 fields (left, right, height, balance factor)
+
+    $\bullet$ Height: height of a node is  max(height of left, height of right) + 1
+
+    $\bullet$ Balance factor: height(left) $-$ height(right). A tree is balanced if $|bf| = 1$.\\
+
+    \newpage
+    \section{Pointer reinforcement}
+
+    Traverse like you are looking for the onde, but children pointers:
+    \begin{lstlisting}
+    node.left = add(node.left, data)
+    \end{lstlisting}
+
+    At each recursive call, return the corrected node.
+
+    In a linked list, for example:
+
+    \begin{lstlisting}
+    public void removeFirstOccurrence(T data) {
+        head = removeFirstOccurrence(head, data);
+        //To return T data from the removed node, use a dummy node.
+    }
+
+    public Node<T> removeFirstOccurrence(Node<T> curr, T data) {
+        if (curr == null) {
+            throw new java.util.NoSuchElementException("Data not found");
+        } else if (curr.data.equals(data)) {
+            --size;
+            return curr.next;
+        } else {
+            curr.next = removeFirstOccurrence(curr.next, data);
+            return curr;
+        }
+    }
+    \end{lstlisting}
+
+
+    \chapter{Sorting Basics}
+
+    \section{Table}
+
+    \begin{tabular}{c|cccccc}
+        Algorithm&Best&Average&Worst&Stable&Adaptive&In/out-of-place\\
+        \hline
+        Bubble&$O(n)$&$O(n^2)$&$O(n^2)$&Yes&Yes&In\\
+        Cocktail shaker&$O(n)$&$O(n^2)$&$O(n^2)$&Yes&Yes&In\\
+        Insertion&$O(n)$&$O(n^2)$&$O(n^2)$&Yes&Yes&In\\
+        Selection&$O(n^2)$&$O(n^2)$&$O(n^2)$&No&No&Out\\
+        Merge&$O(n \log n)$&$O(n \log n)$&$O(n \log n)$&Yes&No&In
+    \end{tabular}
+
+    \section{Comparator and Comparable}
+
+    \textit{Comparable:} a.compareTo(b)
+
+    $a > b \rightarrow > 0$
+
+    $a < b \rightarrow < 0$
+
+    $a == b \rightarrow = 0$
+
+    \textit{Comparator:} comparator.compare(a,b)\\
+
+    \section{Strategies}
+
+    Iterative: bubble, cocktail shaker, selection, insertion (sort)
+
+    Divide and conquer: merge, LSD radix, in-place quicksort\\
+
+    \section{Qualities}
+
+    $\bullet$ Stability: duplicates retain relative order
+
+    $\bullet$ Adaptive: algorithm can end early
+
+    $\bullet$ In-place: use $O(1)$ extra space or recursion. Out-of-place: use more extra space.\\
+
+    \section{Some Algorithms}
+
+    \subsection{Bubble sort}
+
+    // We can apply a "no-swap" optimization so that it's not necessary to keep track of the last swap index
+
+    outer loop: end to 1 (n)
+
+    \qquad loop from 0 to $n-1$ (i)
+
+    \qquad compare arr[i] and arr[i + 1]
+
+    \qquad if not in order: swap\\
+
+    \subsection{Cocktail shaker}
+
+    // If not applying "no-swap", take into account if indices are increasing or decreasing to mark the last swap index.
+
+    // That is, if they are decreasing, the last swap marker will be in the element with the smaller index, and vice-versa.
+
+    outer while loop
+
+    \qquad bubble sort forward
+
+    \qquad bubble sort backwards
+
+
+    \subsection{Insertion}
+
+    for (i = 1 to end)
+
+    \qquad curr = arr[i]
+
+    \qquad for ($j = i - 1$ to 0)
+
+    \qquad \qquad if curr $<$ arr[j]
+
+    \qquad \qquad \qquad arr[j + 1] = arr[j]
+
+    \qquad \qquad else
+
+    \qquad \qquad \qquad arr[j + 1] = curr\\
+
+    $\bullet$ Selection:
+
+    for i = 0 to $n - 1$
+
+    \qquad minIndex = i
+
+    \qquad for $j = i + 1$ to n
+
+    \qquad \qquad if arr[j] $<$ arr[minIndex]
+
+    \qquad \qquad \qquad minIndex = j
+
+    \qquad \qquad swap arr[i], arr[minIndex]\\
+
+    \subsection{Selection}
+
+    // Divide array into left, right sub-arrays
+
+    mergesort(left)
+
+    mergesort(right)
+
+    merge left, right back recursively (with smaller element to the "left")
+
+\end{document}

@@ -1,0 +1,221 @@
+\documentclass[english,openany]{book}
+\usepackage[utf8]{inputenc}
+\usepackage{babel}
+\usepackage{amssymb,amsmath,listings,parskip}
+\usepackage{csquotes}
+\MakeOuterQuote{"}
+
+\begin{document}
+
+    \title{Some notes from CS 4400: Introduction to Database Systems}
+    \author{Rafael A. O. Paulucci}
+    \date{Spring 2019}
+
+    \maketitle
+
+    \tableofcontents
+
+    \lstset{frame=tb,
+    language=SQL,
+    showstringspaces=false,
+    columns=flexible,
+    basicstyle={\small\ttfamily},
+    numbers=none,
+    breaklines=true,
+    breakatwhitespace=true,
+    tabsize=4
+    }
+
+    \chapter{Introduction}
+
+    \section{Concepts}
+
+    $\bullet$ Data: known facts that can be recorded.
+
+    $\bullet$ Database: a collection of \textbf{related} data.
+
+    $\bullet$ Database Management System (DBMS): software package for building and maintaining databases.
+
+    $\bullet$ Database System (DBS): the DBMS, the data itself, and the applications.
+
+    A DBMS has 3 purposes: to define, manipulate, and provide access to the database.
+
+    Database applications have 2 purposes: to query and modify/update the database.
+
+    Columns are \textit{attributes}. Rows are \textit{entities}. Table names are \textit{relations}.
+
+    DBMS Catalog stores not only the data, but also metadata about them.
+
+    \section{Characteristics of the database approach}
+
+    $\bullet$ Data Abstraction: hide the implementation details. Give users a conceptual view of the data and its relations. Allow changes without other levels of conceptualization needing to be aware.
+
+    $\bullet$ Self-describing data (metadata).
+
+    $\bullet$ Support for multiple views of the data.
+
+    \subsection{Database users}
+
+    $\bullet$ Actors of the scene: people who use the DB, including those who create applications for it.
+
+    $\bullet$ Workers behind the scene: people who built the DBMS.
+
+    \subsection{Architecture}
+
+    A data model has \textit{concepts}, \textit{operations} (transactions, queries, updates) and \textit{constraints} (data types and values that are legal; can or can't be null, must have a unique ID etc.)
+
+    Data models can be \textit{conceptual}, \textit{physical} or \textit{self-describing}.
+
+    Database schema: structure
+
+    Database state: a snapshot of the DB at a particular moment in time\\
+
+    \textbf{The Three-Schema Architecture: }
+
+    $\bullet$ End-users are at the external level (with external views.)
+
+    $\bullet$ Conceptual level: conceptual schema  (first name, last name, address, phone number...)
+
+    $\bullet$ Internal level: internal schema (Strings, floating-point numbers, integers, booleans etc.), linked to the binary form of the data stored in memory.
+
+    \section{Terminology}
+
+    SQL stands for Structured Query Language. It is relational, not imperative.
+
+    Sample command:
+
+    \begin{lstlisting}
+    SELECT attribute_list FROM table_list WHERE condition
+    \end{lstlisting}
+
+    The symbols we can use for are $<, >, <=, >=, +, <>$ (not equal to)
+
+    $*$ is a wildcard.
+
+    Other keywords include OR, AND, DISTINCT, LIKE, BETWEEN (inclusive)
+
+    $\%$ matches 0 or more characters. $\_$ matches exactly 1 character.
+
+    \chapter{Relational Algebra}
+
+    \section{Relational Algebra}
+
+    SQL is a standard. MySQL doesn't implement all the standards, but includes extensions.
+
+    Relational algebra is a family of algebras used for modelling the data stored in relational databases, and defining queries on it.\\
+
+    We can have a command like SELECT * FROM
+
+    WHERE (filter out rows)
+
+    GROUP BY
+
+    HAVING (filter out groups)
+
+    ORDER BY\\
+
+    \textbf{Aggregate functions:} count, sum, min, max, avg\\
+
+    \textbf{Relational algebra symbols:}
+
+    select: $\sigma$
+
+    project: $\pi$
+
+    rename: $\rho$
+
+    order by: $\tau$
+
+    group by: $\gamma$
+
+    natural join: $\bowtie$
+
+    Cartesian product: $\times$\\
+
+    Example: $\pi$ fname, lname ($\sigma$ fname = 'john', lname = 'smith' EMPLOYEE)\\
+
+    \textbf{Set operations}
+
+    $\cup$ union, $\cap$ intersection, $-$ difference, $\times$ cross product
+
+    \chapter{Operation Examples}
+
+    \section{Nulls and comparison operators}
+
+    A null value in SQL can mean not available, withheld or not applicable.\\
+
+    \textbf{Comparison operators with nested queries}
+
+    IN, ANY, SOME, ALL, UNION.
+
+   \section{ORDER BY and CONCAT}
+
+    We can use ORDER BY \text{attribute\_list} ASC (ascending, which is the default) or DESC (descending)
+
+    We can use CONCAT to concatenate multiple columns
+
+    \section{UNION}
+
+    UNION works similar to OR, but assumes DISTINCT and does not select null values. It also requires both queries to select the same number of columns.
+
+    \chapter{Entity Relationship Model}
+
+    \section{Terminology}
+
+    An \textit{entity} exists in a mini-world. An entity relationship (ER) model defines relationships between entities.
+
+    Examples: PROFESSOR has 0 or more STUDENT. STUDENT has 0 or more ASSIGNMENT.
+
+    These decisions have to be taken before the database is created.
+
+    Attributes are characteristics of entities. Each attribute has its \textit{value}, with a certain data type.
+
+    Attributes can be simple (e.g.: an ID number), composite (e.g.: an address with number, street, city, state etc.) or multi-valued (e.g.: previous addresses). Attributes can also be calculated.\\
+
+    A \textit{weak entity} cannot be distinguished by its attributes. It must have an identifying relationship.
+
+    Relations can be recursive.
+
+    \textit{Discriminators} are not strong enough to be a key.
+
+    \section{ER Diagram Rules}
+
+    In a diagram, there are shapes for objects: an entity is represented by a rectangle with capital letters; a relationship by a diamond; and an attribute by an oval. \textit{Keys} have underlines under their name. Concentric ovals are multi-valued attributes.
+
+    An entity CAR, for example, can be represented by a specific entity (e.g.: John's car.) The current set of specific entities in a given type is the state of the entities.\\
+
+    Each edge in the diagram is read "name $\rightarrow$ line $\rightarrow$ relationship $\rightarrow$ number." If lines are not double, we read "may take..."
+
+    \section{Enhanced Entity Relationship Model}
+
+    Adds generalization and specialization to the ER diagram.
+
+    EER adds the ability to model entity subclasses and superclasses, and allows for inherited attributes and relationships.
+
+    Example: EMPLOYEE has subclasses SECRETARY, ENGINEER that inherit from EMPLOYEE.
+
+    \textit{Specialization circles} can be disjoint ($d$) or overlapping ($d$).
+
+    \chapter{Normalization}
+
+    \section{Normal Forms}
+
+    Normalization is the process of improving a relation by analyzing it using its functional dependencies and primary keys.
+
+    We attempt to get a relation into a higher normal form.
+
+    $\bullet$ First Normal Form (1NF) - more relaxed requirements
+
+    \textit{"The key"}: The attributes must include only atomic (indivisible) values (i.e.: no combination values, no multi-values.) The primary key must be able to reach all of the values.
+
+    $\bullet$ Second Normal Form (2NF)
+
+    \textit{"The whole key"}: For every non-prime attribute $A \in R$, $A$ is fully functionally dependent on the primary key of $R$.
+
+    $\bullet$ Third Normal Form (3NF)
+
+    \textit{"Nothing but the key"}: None of the attributes of the relation are determined via a transitive relationship.
+
+    $\bullet$ Boyce-Codd Normal Form, 4NF and 5NF - more stringent requirements
+
+\end{document}

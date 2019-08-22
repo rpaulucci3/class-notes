@@ -1,0 +1,1373 @@
+\documentclass[english,openany]{book}
+\usepackage[utf8]{inputenc}
+\usepackage{babel}
+\usepackage{amssymb,amsmath,listings,parskip}
+\usepackage{csquotes}
+\MakeOuterQuote{"}
+
+\begin{document}
+
+    \title{Notes from CS 2050: Introduction to Discrete Math for Computer Science}
+    \author{Rafael A. O. Paulucci}
+    \date{Fall 2018}
+
+    \maketitle
+
+    \tableofcontents
+
+    \lstset{frame=tb,
+    showstringspaces=false,
+    columns=flexible,
+    basicstyle={\small\ttfamily},
+    numbers=none,
+    breaklines=true,
+    breakatwhitespace=true,
+    tabsize=4
+    }
+
+    \chapter{Proofs (Rosen 1)}
+
+    \textbf{Note: chapter and section numbers are according to the book Discrete Mathematics and its Applications, Kenneth Rosen, 7th edition.}
+
+    \section{Intro to Proofs (Rosen 1.7)}
+
+	\begin{tabular}{c|c|c}
+		Technique&Assume&Show\\
+		\hline
+		direct proof&$p$&$q$\\
+		proof by contraposition&$\neg q$&$\neg p$\\
+		vacuous proof&(nothing)&$\neg p$ ($p$ is always false)\\
+		trivial proof&(nothing)&$q$($q$ is always true)\\
+		proof by contradiction&$p \wedge \neg q$&$?$\\
+	\end{tabular} \newline
+
+	Prove p $\rightarrow$ q.
+
+	1) Assume p is true.
+
+	2) Work in definitions. Do math, do logic.
+
+	3) q is then also true.\newline
+
+	Definition. An integer $n$ is even if there exists an integer $k$ where $n = 2k$\newline
+
+	Definition. An integer $n$ is odd if there exists an integer $k$ where $n = 2k + 1$\newline
+
+	\subsection{Direct proof}
+
+	\textbf{Direct proof: The sum of two even integers is even.}
+
+	$p \rightarrow q$
+	a, b $\in {\mathbb Z}$
+
+	p: a and b are even
+
+	q: a + b is even.
+
+	a and b are even (assume p)
+
+	a = 2k, k $\in {\mathbb Z}$ (by definition even)
+
+	b = 2k', $k' \in {\mathbb Z}$ (by definition even)
+
+	a+b = 2k + 2k' (add LHS, RHS)
+
+	a+b = 2(k+k') (factor)
+
+	Note: by definition of even, a+b is even, having form a+b = 2k' where k'' = k + k', k'' $\in {\mathbb Z}$
+
+	Integers are closed with respect to addition.
+
+	Conclusion: I've shown that assuming $p$ leads to $q$ being true, hence $p \rightarrow q$.\newline
+
+	\textbf{Direct proof: If $n$ is odd, then $n^2$ is odd.}
+
+	Proof by contraposition: If $n$ is an integer and $3n+2$ is odd, then $n$ is odd.
+
+	$p \rightarrow q$
+
+	$p: 3n+2$ is odd
+
+	$q: n$ is odd ($n \in {\mathbb Z}$)
+
+	$\neg$ ($n$ is odd) (assume $\neg q$)
+
+	$n$ is even (by definition of even and odd)
+
+	$n = 2k, k \in {\mathbb Z}$ (by definition of even)
+
+	$3n+2$ Let's examine this.
+
+	$3(2k) + 2$ Substitute for $n$.
+
+	$2(3k+1)$ Factor
+
+	Notice this is $\neg p$, the fact than $3n+2$ is even.
+
+	Matching the format of $2k'$, where $k' = 3k+1, k' \in \mathbb Z$
+
+	Conclusion: since $\neg q$ leads to $\neg p$, I've shown $p \rightarrow q$.
+
+		\textbf{1. If $n = ab$ then $a \leq \sqrt{n} \lor b \leq \sqrt{n}$ with $n, a, b \in \mathbb Z^+$}
+
+	\textbf{2. If $m$ and $n$ are perfect squares, then $mn$ is a perfect square.}
+
+	Definition: The integer $x$ is a perfect square if $x = a^2$, with $x, a \in \mathbb Z$.
+
+	Direct proof:
+
+	\begin{tabular}{c|c}
+		Step&Rule\\
+		\hline
+		$m$ is a perfect square. $n$ is a perfect square. &Assume $p$.\\
+
+		$m = a^2, a \in \mathbb Z$&\\
+
+		$n = b^2, b \in \mathbb Z$&\\
+
+		$mn = a^2 b^2$ &Multiply LHSs + RHSs\\
+
+		$mn = (ab)^2$ &Math.\\
+	\end{tabular}
+
+	Hence $mn$ is a perfect square, by definition, where $mn = c^2$, $c=ab$, with $c \in \mathbb Z$. This is our $q$ proposition.
+
+	Conclusion: Assuming $p$ leads to $q$, hence $p \rightarrow q$.\newline
+
+	\textbf{3. $\forall x \exists y \exists z (x=y^2 + z^2)$ with $y,z \in \mathbb Z$ and $x \in \mathbb Z^+$}
+
+	\subsection{Proof by contraposition}
+
+	\begin{tabular}{c|c}
+		Step&Rule\\
+		\hline
+		$\neg(a \leq \sqrt{n} \lor b \leq \sqrt{n})$ & Assume $\neg q$\\
+
+		$a \leq \sqrt{n} \wedge b \leq \sqrt{n}$ & DeMorgan's\\
+
+		$a > \sqrt{n} \wedge b > \sqrt{n}$ & Definiton of $\leq$\\
+
+		$ab > \sqrt{n}\sqrt{n}$ & Multiply LHSs + RHSs\\
+
+		$ab > n$ & Multiply\\
+	\end{tabular}
+
+	Therefore, $ab \neq n$ by definition of $>, =$. Note this is $\neg p$.
+
+	Conclusion: I have shown that, assuming $\neg q$ leads to $\neg p$, hence $p \rightarrow q$. \newline
+
+	\subsection{Proof by counterexample}
+
+   (Used to prove a claim is false.)
+
+	See $x=3$.
+
+	$3 \in \mathbb Z^+$ and yet no sum of $y^2$ and $z^2$ will yield $3$.
+
+	Let's look at the smallest perfect squares.
+
+	\begin{tabular}{c}
+		$0^2 = 0$\\
+		$-1^2 = 1^2$ = 1\\
+		$-2^2 = 2^2 = 4$\\
+	\end{tabular}
+
+	And these continue in increasing order.
+
+	A sum of 3 could allow some pair of 0 or 1. Yet,
+
+	\begin{tabular}{c}
+		$0+0=0$\\
+		$0+1=1$\\
+		$1+0=1$\\
+		$1+1=2$\\
+	\end{tabular}
+
+	Any larger sum overshoots 3.
+
+	Conclusion: $x=3$ fails, so this claim is false.\newline
+
+
+	\subsection{Proof by contradiction}
+
+	Instead of starting from $p \rightarrow q$, we'll start from the following:
+
+	$\neg (p \rightarrow q)$
+
+	Material implication: $\neg(\neg p \lor q)$
+
+	Assume $p \wedge \neg q$. If we find $p \wedge \neg q \wedge q$, there's a contradiction. Likewise for $\neg p \wedge p \wedge \neg q$.
+
+	\section{Some solved exercises}
+
+		\textbf{5. b} (DeMorgan's is done incorrectly)\\
+
+	\textbf{6. a} This is material implication.\\
+
+	\textbf{7. }
+
+	\begin{tabular}{cc|cccc|c}
+		p&q&$p \leftrightarrow q$&$\neg(p \leftrightarrow q)$&$\neg q$&$p \leftrightarrow \neg q$&Conclusion\\
+		\hline
+		T&T&T&F&F&F&T\\
+		T&F&F&T&T&T&T\\
+		F&T&F&T&F&T&T\\
+		F&F&T&F&T&F&T\\
+	\end{tabular}
+
+	Conclusion: Since the two columns $\neg(p \leftrightarrow q)$ and $p \leftrightarrow \neg q$ are identical, $\neg(p \leftrightarrow q) \equiv p \leftrightarrow \neg q$.\\
+
+	\textbf{8.}
+
+	\begin{tabular}{c|c|c}
+		Step&Statement&Rule\\
+		\hline
+		5&$p \rightarrow r$&contrapositive of 2.\\
+		6&$p$&disjunctive syllogism (4. and 1.)\\
+		7&$r$&modus ponens (6. and 5.)\\
+		8&$s$&modus ponens (3. and 7.)\\
+	\end{tabular}
+
+	$\therefore$ Using the rules of inference and premises, we have shown $s$.\\
+
+	\textbf{9.} $\forall y \exists x_1 \exists x_2 ( M(y) \rightarrow ( (T(x_1, y) \wedge C(x_1)) \wedge (T(x_2, y) \wedge F(x_2))  ))$\\
+
+	\textbf{10.} $\forall x \exists y (F(x) \rightarrow (T(x,y) \wedge M(y)))$\\
+
+	\textbf{11.} $\exists x (F(x) \wedge C(x))$\\
+
+	\textbf{12.} $\exists x_1 \exists x_2  \forall x_3 ( C(x_1) \wedge C(x_2) \wedge (x_1 \neq x_2) \wedge ((x_1 \neq x_3) \wedge (x_2 \neq x_3)) \rightarrow \neg C(x_3))$
+
+
+	\chapter{Set Theory (Rosen 2)}
+
+	\section{Sets}
+
+	\textbf{Unordered collection of elements.}
+
+	\subsection{Intro to Sets (Rosen 2.1)}
+
+	Example: $\{1,2,3\} = \{2,1,3\} = \{1,1,3,2,3,2\}$\newline
+
+	$S = \{1,3,7,7,$ Mary, Lee$,3.5,1\}$
+
+	The cardinality of $S$ is 6.
+
+	$\mathbb Z^+ = \{ 1,2,3,... \}$
+
+	The cardinality of $\mathbb Z^+$ is $\infty$.
+
+	$B = \{\mathbb Z, \mathbb Z^+, \mathbb R \}$
+
+	The cardinality of $B$ is 3.
+
+	$C = \{ \{\}, \{1,2\},1,2,\{1,1,2 \}, \{\{\}\} \}$
+
+	The cardinality of $C$ is 5. The only element not counted is $\{1,1,2 \}$, because it is equivalent to $\{1,2\}$.
+
+	Note: $1 \neq \{1\}$, and $1 \in \{1\}$
+
+	Also, the set that contains the empty set is not equal to the empty set itself.
+
+	$D = \{\mathbb Z, \mathbb Z^+ \cup \{0\} \cup \mathbb Z^- \}$
+
+	The cardinality of $D$ is 1, because the second element is equivalent to the first.\newline
+
+	\noindent
+	\subsection{Set Builder Notation, List Notation}
+
+	$B = \{2,4,6,8,...\}$
+
+	$\mathbb Z^+ = \{ 1,2,3,4,... \}$
+
+	$B = \{ 2x \ | \ x \in \mathbb Z^+\}$ \\
+
+	$A = \{1,2\}$
+
+	$B = \{5,6,7\}$
+
+	$A \times B = \{ (1,5),(1,6),(1,7),(2,5),(2,6),(2,7) \}$
+
+	$A \times B = \{ (a,b) \ |\ a \in A, b \in B \}$\\
+
+	$S = \{2,9,28,65,...\}$
+
+	$S = \{ x^3 + 1 \ | \ x \in \mathbb Z^+ \}$\\
+
+	$A = B \iff \forall x (x \in A \iff x \in B)$\\
+
+	$A \subset B \iff \forall x (x \in A \rightarrow x \in B) \wedge \exists x (x \in B \wedge x \not\in A)$
+
+	(Note: the above is a proper subset. A "regular" subset is denoted by $\subseteq$.)
+
+	$A \subseteq B \iff \forall x (x \in A \rightarrow x \in B)$
+
+	\section{Cardinality (Rosen 2.2)}
+
+	$\{\} = \emptyset$
+
+	So $/\{ \{\}, \emptyset, \{\{\}\} \}/ = 2$\\
+
+	\subsection{Power Set}
+
+	$\mathbb P (S)$ is the set of all subsets of $S$.
+
+	$S = \{\}$, $\mathbb P (S) = \{ \{ \} \}$
+
+	$S = \{1\}$, $\mathbb P (S) = \{  \{\}, \{1\}  \}$
+
+	$S = \{1, 2\}$, $\mathbb P (S) = \{  \{\},  \{ 1 \}, \{ 2 \},  \{1, 2\}  \}$
+
+	\dots
+
+	$/ \mathbb P(S)/ = 2^{ /S/ }$ (bars are notation for set cardinality)\\
+
+	$A \times B = \{ (a,b)\ |\ a \in A \wedge b \in B \}$ (ordered 2-tuple)
+
+	$A \times B \times C = \{ (a,b,c)\ |\ a \in A \wedge b \in B \wedge c \in C \}$ (ordered 3-tuple)
+
+	$A \cup B \{ x \ | \ x \in A \lor x \in B\}$
+
+	$B - A = \{ x \ |\ x \in B \wedge x \notin A \}$
+
+	$\bar{A} = U - A$ (complement of A) ($U$ is a hypothetical universal set in a given context)
+
+	$\bar{A} = \{ x \ |\ x \in U \wedge x \notin A \}$
+
+		Use set builder notation and logical equivalencies to show De Morgan's law for sets holds.
+
+	$\bar{A \cap B} = \bar{A} \cup \bar{B}$
+
+	$\bar{A \cap B} = \{ x \ |\ x \notin A \cap B\} $  (definition of complement)
+
+	$= \{ x \ |\ \neg(x \in A \cap B) \} $ (definition of $\notin$)
+
+	$= \{ x \ |\ \neg(x \in A \wedge x \in B) \} $ (definition of $\cap$)
+
+	$= \{ x \ |\ \neg(x \in A) \lor \neg(x \in B) \} $ (De Morgan's for logic)
+
+	$= \{ x \ |\ (x \notin A) \lor (x \notin B) \} $ (definition of $\notin$)
+
+	$= \{ x \ |\ (x \in \bar{A}) \lor (x \in \bar{B}) \} $ (definition of complement)
+
+	$= \{ x \ |\ x \in \bar{A} \cup \bar{B} \} $ (definition of $\cup$)
+
+	$= \bar{A} \cup \bar{B}$
+
+	$\therefore$ It is true, as shown, that $\bar{A \cap B} = \bar{A} \cup \bar{B}$.\\
+
+	\textbf{Membership table}
+
+	$A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$ Distributive property
+
+	Table indicates if $x$ belongs to set $A, B, C \dots$
+
+	\begin{tabular}{c|c|c|c|c|c|c|c}
+		$A$&$B$&$C$&$(B \cup C)$&$A \cap (B \cup C)$&$A \wedge B$&$A \wedge C$&$(A \cap B) \cup (A \cap C)$\\
+		\hline
+		1&1&1&1&1&1&1&1\\
+		1&1&0&1&1&1&0&1\\
+		1&0&1&1&1&0&1&1\\
+		1&0&0&0&0&0&0&0\\
+		0&1&1&1&0&0&0&0\\
+		0&1&0&1&0&0&0&0\\
+		0&0&1&1&0&0&0&0\\
+		0&0&0&0&0&0&0&0\\
+	\end{tabular}
+
+	Since for every category of elements the result is the same, $A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$.
+
+	$\cap$ is like multiply.
+
+	$\cup$ is like add.
+
+	\section{Functions}
+
+	Function $f$ from $A$ to $B$ (non-empty sets): $f : A \rightarrow B$
+
+    Examples:\\
+    %TODO: Insert function sets diagram
+
+	$f :\ $characters$ \rightarrow $grades (domain to co-domain)
+
+    (The function above is not one-to-one and not onto.)
+
+    abs : $\mathbb Z \rightarrow \mathbb Z$ (range: $\mathbb Z^{\geq 0}$)\\
+
+    %TODO: Example of 1-to-1 but not onto; example of not 1-to-1 but onto; example of 1-to-1 and onto.
+
+    When a function is one-to-one and onto, we can find an inverse function $f^{-1}$.
+
+    $f$ is one-to-one $\leftrightarrow$ $\forall a \forall b (a \neq b \rightarrow f(a) \neq f(b))$, with $a,b \in$ domain of $f$.
+
+    $f$ is onto if $\forall y \exists x (f(x) = y)$, with $x \in$ domain of $f$, $y \in$ co-domain of $f$.\\
+
+    In relational databases:
+
+    $f : A \rightarrow B \subseteq A \times B$
+
+    $A = \{1,2\}$
+
+    $B = \{10,20,30\}$
+
+    $A \times B = \{(1,10),(1,20),(1,30),(2,10),(2,20),(2,30)\}$ (all theoretically possible transitions; Cartesian product.)
+
+    We can define the "real" transitions to be $\{(1,10),(2,10)\}$, using the function.
+
+    \chapter{Algorithms and Complexity (Rosen 3)}
+
+    \section{Intro to Big O}
+
+	Problem: Calculate compound interest.
+
+    Assume $P_0 = 10,000$, interest rate 11\%.
+
+    First technique: Recurrence Equation
+
+    $P_n = P_{n-1} \times 1.11$
+
+    Big O: $O(n)$ (n is the number of years)
+
+    $P_1 = P_0 \times 1.11$
+
+    $\vdots$
+
+    $P_{30} = P_{29} \times 1.11$
+
+    $P_{100} = P_0 \times 1.11^{100}$\\
+
+    "Shortcut" for $\sum_{i=1}^{n} i$ with $O(1)$ complexity (closed form)
+
+    Inverting the order of terms of the sum and adding them to the original sum, we will get $n$ elements. Each element is going to equal $n+1$. Since we added the same sum in the opposite order, we have to divide the final result by 2.
+
+    So, a formula for this kind of sum is  $\sum_{i=1}^{n} i = \frac{n(n+1)}{2}$
+
+    procedure max($a_1, a_2, a_3, ..., a_n$ : integers)
+
+    max := $a_1$
+
+    for 1:= 2 to $n$
+
+    $\quad$ if $a_i > $ max then
+
+         $\quad\quad$ max := $a_i$
+
+    Big O is $O(n)$\\
+
+    \noindent
+    function exponential($b$: positive integer, $a$: non-negative integer)
+
+    if $a = 0$ then
+
+    $\quad$ result := 1
+
+    else
+
+    $\quad$ result := b $\cdot$ exponential($b,\ a-1)$
+
+    return result
+
+    Big O is $O(a)$\\
+
+    \noindent
+    function fastExpo($b$: positive integer, $a$: non-negative integer)
+
+    if a = 0 then
+
+    $\quad$ result := 1
+
+    else if e \% 2 = 0 then
+
+    $\quad$ half := fastExpo(b, a/2)
+
+    $\quad$ result := half $\cdot$ half
+
+    else
+
+    $\quad$ result := b $\cdot$ fastExpo(b, a-1)
+
+    return result\\
+
+    Example: $3^{12} = 3^6 \cdot 3^6 = g \cdot g$
+
+    Big O is $O(\log n)$
+
+    The fastExpo function is an example of "divide-and-conquer".
+
+    There are also, for instance, dynamic programming (example: longest common subsequence), and greedy algorithm.
+
+    \section{Greedy algorithms}
+
+    \subsection{Complexity of MST and Prim's}
+
+    \textbf{Big O}
+
+    \begin{tabular}{c|c|cc}
+        Notation&Time&$n=100$&$n=200$\\
+        \hline
+        $O(1)$&constant&1&1\\
+        $O(\log n)$&log time (base 2)&7&8\\
+        $O(n)$&linear&100&200\\
+        $O(n \log n)$&&700&1600\\
+        $O(n^2)$&&10000&40000\\
+        $O(2^n)$&&huge (10 commas)&enormous\\
+        $O(n!)$&&(40 commas)&super enormous\\
+    \end{tabular}\\
+
+    \subsection{Towers of Hanoi}
+
+    \begin{lstlisting}
+    def towers(n, a, b, c):
+        if n == 1:
+            print("Move disk from %s to %s"%(a,b))
+        else:
+            towers(n-1, a, c, b)
+            towers(1, a, b, c)
+            towers(n-1, c, b, a)
+    \end{lstlisting}
+
+    \textit{Recurrence equation:}
+
+    Time(1): 1 move
+
+    Time(n): Time$(n-1)$ + Time(1) + Time$(n-1)$
+
+    Closed form: $O(2^n) - 1$
+
+    \chapter{Modular Arithmetic (Rosen 4)}
+
+    \section{Congruency (Rosen 4.1)}
+
+    If $a, b \in \mathbb Z$ and $m \in \mathbb Z^+$, then $a$ is congruent to $b$ modulo $m$, if $m$ divides $a-b$.
+
+    We write $a \equiv b\ (\mod m)$.\\
+
+    Examples:
+
+    $7 \equiv 13 (\mod 6)$, $7 - 13 = -6$, $6 | -6 ?$ (yes, multiplier $-1$)
+
+    $3 \not\equiv 10 (\mod 2)$, $10 - 3 = 7$, $2 \not| 7 ?$, $3 \mod 2 \neq 10 \mod 2$\\
+
+    Let $a,b \in \mathbb Z, m \in \mathbb Z^+$. Then, $a \equiv b (\mod m) \leftrightarrow \exists k \in \mathbb Z$ s.t. $a = b + km$.
+
+    If $a \equiv b (\mod m)$ and $c \equiv d (\mod m)$, then $a + c \equiv b + d (\mod m) ?$
+
+    By definition of congruency: $a = b + km, k \in \mathbb Z$
+
+    $c = d + k^{'} m, k \in \mathbb Z$
+
+    Add LHSs, RHSs: $a+c = b + km + d + k^{'} m$
+
+    Regroup, refactor: $a + c = b + d + (k + k^{'})m$
+
+    By definition of congruency modulo $m$, $a + c \equiv b + d (\mod m)$.
+
+    Conclusion: yes, the statement above is true.
+
+    $a \equiv b (\mod m) \wedge c \equiv d (\mod m) \rightarrow a + c \equiv b + d (\mod m)$ as shown, with $a,b,c,d \in \mathbb Z$ and $m \in \mathbb Z^+$.
+
+    \section{Binary Numbers (Rosen 4.2)}
+
+    $123_{10} = 1 \cdot 10^2 + 2 \cdot 10^1 + 3 \cdot 10^0$
+
+    $10110_2 = 1 \cdot 2^4 + 0 \cdot 2^3 + 1 \cdot 2^2 + 1 \cdot 2^1 + 0 \cdot 2^0 = 22_{10}$
+
+
+    $1011011_2 = 133_8 = 5B_{16}$
+
+    (convert in blocks of 3 bits for octal, and in blocks of 4 bits for hexadecimal)\\
+
+    \textbf{Example:} Convert $241_{10}$ to binary.
+
+    241 div 2 = 120, remainder 1
+
+    120 div 2 = 60, remainder 0
+
+    60 div 2 = 30, remainder 0
+
+    30 div 2 = 15, remainder 0
+
+    15 div 2 = 7, remainder 1
+
+    7 div 2 = 3, remainder 1
+
+    3 div 2 = 1, remainder 1
+
+    1 div 2 = 0, remainder 1
+
+    Read from bottom to top: $11110001_2$
+
+    \section{Primes, GCD, LCM (Rosen 4.3)}
+
+    \textbf{Prime:} integer greater than 1 that is divisible by only 1 and itself
+
+    Every positive integer $>1$ is divisible at least by 1 and itself.
+
+    \textbf{Composite:} positive integer $>1$ that is not prime.
+
+    Integer $n$ is composite $\iff \exists a \in \mathbb Z$ s.t. $a | n$ and $1 < a < n$
+
+    \subsection{Fundamental Theorem of Arithmetic}
+
+    Every positive integer $>1$ can be written uniquely as a prime number or as the product of two or more primes, where the prime factors are written in non-decreasing order.
+
+    Examples: $100 = 2 \cdot 2 \cdot 5 \cdot 5$, $641 = 641$, $999 = 3^3 \cdot 37$
+
+    Longer example: $7007$
+
+    $2|7007$ fails
+
+    $3|7007$ fails
+
+    $5|7007$ fails
+
+    $7|7007$ works: $7007/7 = 1001$
+
+    $7|1001$ works: $1001/7 = 143$
+
+    $7|143$ fails
+
+    $11|143$ works: $11/143 = 13$
+
+    $7007 = 7 \cdot 7 \cdot 11 \cdot 13$
+
+    The factorization can be optimized, for example, by only verifying for primes up to the square root of the original number.\\
+
+    \subsection{Greatest Common Divisor (GCD)}
+
+    gcd(36, 24) = 12
+
+    $36 = 2^2 \cdot 3^2$, $24 = 2^3 \cdot 3^1$
+
+    What 36 and 24 have in common at most, prime by prime, is $2^2 \cdot 3^1 = 12$ (minimized exponents).
+
+    gcd($2^{13} \cdot 3^5 \cdot 7^1 \cdot 13^2,\ 2^2 \cdot 3^1 \cdot 11^5$) = $2^2 \cdot 3^1$
+
+     \textbf{Co-prime or relatively prime}
+
+     Example: $11^2 \cdot 13^5$ and $3^2 \cdot 5^3$. The gcd is 1.
+
+     \subsection{Least Common Multiple (LCM) and Euclid's Algorithm}
+
+     lcm($2^{13} \cdot 3^5 \cdot 7^1 \cdot 13^2, 2^2 \cdot 3^1 \cdot 11^5$) = $2^{13} \cdot 3^5 \cdot 7^1 \cdot 11^5 \cdot 13^2$
+
+     lcm(120, 500) = lcm$(2^3 \cdot 3 \cdot 5,\ 2^2 \cdot 5^3) = 2^3 \cdot 3^1 \cdot 5^3 = 3000$\\
+
+    gcd(630, 196)
+
+    630 mod 196 = 42
+
+    gcd(196, 42)
+
+    196 mod 42 = 28
+
+    gcd(42, 28)
+
+    42 mod 28 = 14
+
+    gcd(28, 14)
+
+    28 mod 14 = 0
+
+    gcd(14,0)
+
+    So gcd(630, 196) = 14
+
+    \chapter{Induction (Rosen 5)}
+
+    \section{Mathematical Induction (Rosen 5.1)}
+
+    \subsection{Proofs by Induction}
+
+    \subsubsection{Ladder}
+
+    Can we reach (prove) the first rung? (i.e., the smallest problem size; the basis step, base case, $P(1)$).
+
+    Inductive step: $k,\ k+1$ rungs.
+
+    $P(k) \rightarrow P(k+1)$. Assume $P(k)$, don't prove it.
+
+    Conclusion: since the basis step and induction step have been shown to be true, \textit{by the principle of mathematical induction}, $\forall n P(n), n \in \mathbb Z^+$ is true. \\
+
+    $P(n): \sum_{i=1}^{n} i = \frac{n(n+1)}{2}, \forall n P(n), n \in \mathbb Z^+$.
+
+    \textbf{Proof by mathematical induction.}
+
+    Basis step: $P(1): \sum_{i=1}^{n} i = 1$ The summation (LHS) yields 1.
+
+    $\frac{1(1+1)}{2} = 1$ The RHS (closed form) yields 1 when simplified.
+
+    Conclusion: since the sum is 1 and the closed form is 1, $P(1)$ is true.
+
+    Inductive step:
+
+    I will prove $P(k) \rightarrow P(k+1), k \in \mathbb Z^+$.
+
+    Assume $P(k): \sum_{i=1}^{k} i = \frac{k(k+1)}{2}$.
+
+    \noindent\fbox{
+        \parbox{\textwidth}{
+            \textit{Aside:}
+
+            $1+2+3+4+\dots+k \rightarrow k(k+1)/2$
+
+            To add the first $k+1$ numbers, $1+2+3+4+\dots+k+[k+1] \rightarrow k(k+1)/2 + [k+1] = \sum_{i=1}^{k+1} i = \frac{(k+1)[(k+1)+1]}{2}$
+        }
+    }
+
+    $\sum_{i=1}^{k} i + [k+1] = \frac{k(k+1)}{2} + [k+1]$
+
+    $\sum_{i=1}^{k+1} i + [k+1] = \frac{k(k+1)+2[k+1]}{2}$ Simplify the summation, find common denominator.
+
+    \qquad \qquad$= \frac{(k+1)(k+2)}{2} = \frac{(k+1)((k+1)+1)}{2}$
+
+    Note this is our $k+1$ statement. Hence, it does follow from our $k$ statement. I have shown $P(k) \rightarrow P(k+1)$, completing the inductive step.
+
+    Conclusion: since the basis step and inductive step are both true, by the principle of mathematical induction, $P(n)$ is true for all positive integers.\\
+
+    \subsubsection{Sum of $n$ elements}
+
+    $1+3+5+7+\dots =\ ?,\ n \in \mathbb Z^+$
+
+    The sum of the first element is 1.
+
+    The sum of the first 2 elements is 4.
+
+    The sum of the first 3 elements is 9.
+
+    It seems like the sum of the first $n$ elements is $n^2$.
+
+    $P(n): \sum_{i=1}^{n} (2i-1) = n^2,\ n \in \mathbb Z^+$ (conjecture)
+
+    \textbf{Proof by mathematical induction.}
+
+    Basis step: $P(1):$ $\sum_{i=1}^{1} (2i-1) = 1^2$
+
+    LHS: $2(1) - 1 = 2-1 = 1$
+
+    RHS: $1^2 + 1$
+
+    Since LHS = RHS, $P(1)$ is true.
+
+    Inductive step:
+
+    We will show $P(k) \rightarrow P(k+1), k \in \mathbb Z^+$
+
+    $P(k): \sum_{i=1}^{k} (2i-1) = k^2$ Assume $P(k)$.
+
+    $\sum_{i=1}^{k} (2i-1) + [2(k+1)-1] = k^2 + [2(k+1)-1]$ Add next term to both
+
+    $\sum_{i=1}^{k+1} (2i-1) = k^2 + [2(k+1)-1]$ Clean up sum
+
+    \qquad \qquad $= k^2 + 2k + 2 - 1$ Simplify RHS
+
+    \qquad \qquad $= k^2 + 2k + 1$ Simplify
+
+    \qquad \qquad $= (k+1)^2$ Factor
+
+    $P(k)$ does lead to $P(k+1)$, being true, hence, $P(k) \rightarrow P(k+1)$
+
+    Conclusion: since the basis step and inductive step are both true, by the principle of mathematical induction, $P(n)$ is true for all positive integers.\\
+
+    \subsubsection{Divisors}
+
+    $P(n): 3|(n^3 - n) \forall n,\ n \in \mathbb Z^+$
+
+    Proof by math induction.
+
+    Base step, $P(1)$:
+
+    Let's look at $P(1): 3|(1^3 - 1)$
+
+    $3|(1-1)$ (simplify)
+
+    $3|0$ (simplify)
+
+    By definiton, 3 divides 0, since $3 \cdot 0$ yields 0. Therefore, $P(1)$ is true.\\
+
+    Inductive step: prove $P(k) \rightarrow P(k+1), k \in \mathbb Z^+$.
+
+    Let's look at $P(k+1)$.
+
+    $P(k+1) : 3|[(k+1)^3 - (k+1)]$
+
+    $3|(k^3+3k^2+3k+1)-(k+1)$ Expand
+
+    $3|(k^3 + 3k^2 + 3k - k)$ Regroup
+
+    $3|(k^3 - k + 3k^2 + 3k)$ Regroup
+
+    $3|[(k^3-k)+3(k^2+k)]$ Factor 3
+
+    Note that by our inductive hypothesis, $P(k) (k^3-k)$ is divisible by 3. We conclude that $3(k^2+k)$ is divisible by 3 since it is a multiple of 3, $k^2 + k \in \mathbb Z$.
+
+    The sum of two values divisible by 3 yields a sum divisible by 3.
+
+    I've shown $P(k) \rightarrow P(k+1)$.
+
+    Conclusion: since the base step and inductive step are both true, $P(n)$ is true $\forall n \in \mathbb Z^+$, by the principle of mathematical induction.\\
+
+    \subsubsection{Tiling}
+
+    Problem. $P(n)$: let $n \in \mathbb Z^+$. Show that every 2 by 2 board with one square removed can be tiled by right triangles.
+
+    Proof by mathematical induction.
+
+    Base case. $P(1): $ 2 by 2 board can be tiled having any one square removed as shown below.
+
+    %TODO: add illustration
+
+    Base case is complete.
+
+    Inductive step. $P(k) \rightarrow P(k+1), k \in \mathbb Z^+$
+
+    Let's look at a $2^{k+1} \times 2^{k+1}$ board.
+
+    %TODO: add illustration
+
+    \section{Strong Induction (Rosen 5.2)}
+
+    Recall the "ladder" from the mathematical induction section.
+
+    With strong induction, it is possible to use more than 1 previous result to reach a desired next result.
+
+    Take care not to go outside of your domain when going back
+
+    \subsection{Postage stamps}
+
+    %TODO: Complete the beginning of this demo
+
+    We have 4 cent and 5 cent stamps.
+
+    We have $3 \times 4$ cent stamps, or 12 cents total.
+
+    Inductive step: will show $\forall j (12 \leq j \leq k) P(j) \rightarrow P(k+1)$
+
+    Let's look at $k + 1$ postage.
+
+    Use the postage for $k - 3$ (which is doable by our inductive hypothesis) and add a 4 cent stamp to it.
+
+    Note $k - 3 + 4 = k + 1$. Hence, $P(k+1)$ is also true.
+
+    \newpage
+
+    \section{Recursion (Rosen 5.3)}
+
+    \subsection{Factorials}
+
+    Factorials $n!,\ n \in \mathbb Z^{\geq 0}$
+
+    Base case: $0! = 1$
+
+    Recursive step: $(n+1)! = (n+1) \cdot n!$\\
+
+    \subsection{Fibonacci}
+
+    Fibonacci ($n \in \mathbb Z^{\geq 0}$)
+
+    Base case: Fib(0) = 0
+
+    Fib(1) = 1
+
+    Recursive step: Fib(n+2) = Fib(n) + Fib(n+1)\\
+
+    Base case: $3 \in S$
+
+    Recursive step:
+    \qquad if $x \in S$ and $y \in S$, then $x+y \in S$
+
+    List notation: $S =\{3, 6, 9, 12, 15, \dots\} $
+
+    Set builder: $S = \{3x |\ x \in \mathbb Z^+\}$\\
+
+    \subsection{Alphabets and Strings}
+
+    $\Sigma$ is your alphabet. Examples: $\Sigma = \{0,1\}$  or $\Sigma = \{A,T,C,G\}$, and so on.
+
+    $\Sigma^*$ (Kleene closure) is the set of all strings that can be built from symbols in $\Sigma$. $\lambda$ is an empty string.
+
+    Example: $\Sigma = \{0,1\}$
+
+    $\Sigma^* = \{\lambda, 0, 1, 00, 01, 10, 11, 000, 001, 010, 011, 100, 101, 110, 111, 0000, \dots \}$
+
+    Recursive definition of $\Sigma^*$.
+
+    Base case: $\lambda \in \Sigma^*$
+
+    Recursive step: If $w \in \Sigma^*$ and $x \in \Sigma$, then $wx \in \Sigma^*$ (concatenation)
+
+    We will notice that the elements 0 and 1, in the previous example, are actually formed by $\lambda0$ and $\lambda1$
+
+    $w$ is a string over alphabet $\Sigma$: $w \in \Sigma^*$
+
+    Define the reverse, $w^R$, recursively.
+
+    Base case: $\lambda^R = \lambda$
+
+    Recursive step: If $w \in \Sigma^*$ and $x \in \Sigma$, then $(wx)^R = x(w)^R$ (i.e, put the last character in the front position of the string)
+
+    Set of all palindromes over $\Sigma$. Call the set $P$.
+
+    Recursive definition:
+
+    Base case: $\lambda \in P$. If $x \in \Sigma, x \in P$.
+
+    Recursive step: If $w \in P$ and $x \in \Sigma$, then $xwx \in P$.
+
+    \subsubsection{Length of a string}
+
+    Basis step:
+
+    length$(\lambda) = 0$
+
+    Recursive step:
+
+    if $w \in \Sigma^*$ and $x \in \Sigma$, then length($wx$) = length($w$) + 1\\
+
+
+    $\Sigma^{even}$: \textit{even-length strings over} $\Sigma$.
+
+    Basis step:
+
+    $\lambda \in \Sigma^{even}$
+
+    Recursive step:
+
+    if $w \in \Sigma^{even}$ and $x \in \Sigma$, $y \in \Sigma$, then $wxy \in \Sigma^{even}$
+
+    \subsection{Palindromes}
+
+    Base case: $\lambda \in P$ if $x \in \Sigma$ then $x \in P$.
+
+    Recursive: if $x \in \Sigma$ and $w \in P$.
+
+    then $xwx \in P$
+
+    (note: this doesn't cover everything: $xxwxx \in P$)\\
+
+
+	\chapter{Counting (Rosen 6)}
+
+    \section{Counting (Rosen 6.1)}
+
+    \subsection{Product rule}
+
+    1 dollar: cupcake
+
+    1 type of cake, 1 type of icing always.
+
+    Cake: \{chocolate, blueberry, red velvet, peach, strawberry, vanilla\} (6 types)
+
+    Icing: \{mango, vanilla, cream cheese, coffee\} (4 types)
+
+    Product rule: $6 \cdot 4 = 24$\\
+
+    \subsection{Sum rule}
+
+    3 dollars: pizza
+
+    1 topping, sauce, crust always.
+
+    Crust: \{thin, deep dish\} (2 types)
+
+    Sauce: \{tomato, pesto, alfredo, BBQ\} (4 types)
+
+    Topping: \{pineapple, pepperoni, mushrooms\} (3 types)
+
+    (Extended) product rule: $2 \cdot 4 \cdot 3 = 24$\\
+
+    1 free cupcake $\oplus$ 1 free pizza
+
+    How many choices? Sum rule: $24 + 24 = 48$\\
+
+    \textbf{Product and sum rules combined}
+
+    12 offices (empty and unique)
+
+    2 interns (Zim and Gir, unique)
+
+    How many ways to have office assignments?
+
+    If they must share an office: 12 possibilities.
+
+    If they must NOT share an office: $12 \cdot 11$ possibilities.
+
+    If sharing doesn't matter: $12 + 12 \cdot 11$ (there is no way to share and not share at the same time)\\
+
+    \subsection{Extra examples}
+
+    \subsubsection{Car tag}
+
+    Format: 3 letters and 4 numbers (LLLDDDD).
+
+    26 possible letters, 10 possible numbers.
+
+    Possibilities: $26^3 \cdot 10^4$
+
+    If we want to avoid one certain sequence of 3 starting characters (that might be obscene), we would have $26^3 \cdot 10^4 - 10^4$ possibilities (inclusion-exclusion technique). Note we are not taking into account the spelling itself.\\
+
+    How many bit strings are of length 7? $2^7$\\
+
+    \subsubsection{BASIC language variable names}
+
+    Rules:
+
+    1. Starts with a letter (one of 26 letters), and is otherwise alphanumeric (not case-sensitive).
+
+    2. Maximum length is 2.
+
+    3. Cannot use a reserved word. There are 5 "collisions" (reserved words of length 2).
+
+    $V = V_1 + V_2$
+
+    $V_1 = 26$
+
+    $V_2 = 26 \cdot (26+10)$
+
+    so $V = 962$
+
+    Removing the 5 reserved word collisions, $V_f = 957$\\
+
+    \subsubsection{Passwords (Inclusion/Exclusion)}
+
+    Length 6 to 8, alphanumeric: $P = P_6 + P_7 + P_8 = 36^6 + 36^7 + 36^8$
+
+    $P_6 = (26+10)^6 = 36^6$
+
+    If it must contain at least one digit: calculate $P_n$, but subtract all the possibilities that do not contain at least one digit (i.e, the ones that are all letters). \textit{Inclusion/exclusion.}
+
+    $P_{6*} = P_6 - (26)^6$
+
+    $P_{7*} = P_7 - (26)^7$
+
+    $P_{8*} = P_8 - (26)^8$\\
+
+    \subsubsection{Bit strings}
+
+    Number of bit strings with length 8 that start with a 1 or end with 00 (inclusive OR).
+
+    Number of strings that start with 1 + Number of strings that end with 00 $-$ number of strings that start with 1 and end with 00 (to avoid double counting)
+
+    $(1 * 2^7) + (2^6 * 1 * 1) - (1 * 2^5 * 1 * 1)$
+
+    If the OR was exclusive, we would subtract $2^5$ twice.\\
+
+    Bit strings of length 4 without consecutive 1s.
+
+    $\{0000, 0001, 0010, 0100, 0101, 1000, 1001, 1010\}$
+
+    Use a tree with tree pruning to find possible strings.
+
+    \newpage
+    \section{Permutation and Combination (Rosen 6.3)}
+
+    We have a set $S$ of size $n$ and we will pick $r$ elements.
+
+    $n = /S/ = 3$
+
+    $S = \{a,b,c\}$
+
+    There are two ways this can go.
+
+    Imagine we want 2 of these. What do we want?
+
+    $/ \{ \{a,b\}, \{a,c\}, \{b,c\} \} / = 3$
+
+    If the order matters:
+
+    $/ \{   <a,b>, <b,a>, <a,c>, <c,a>, <b,c>, <c,b>  \} /  = 6$
+
+    Choose $r$ from $n$ elements.
+
+    If the order of picking matters: \textit{permutation}. If not: \textit{combination}.\\
+
+    \subsection{Permutation}
+
+    We have 100 runners. What is the number of winning permutations for first, second and third place? Everybody finishes, and there are no ties.
+
+    $100 \cdot 99 \cdot 98$
+
+    Number of ways for the top 20:
+
+    $P(100,20) = \frac{100!}{(100-20)!}$
+
+    \subsubsection{Number of permutations of length $r$ from a set of $n$ elements}
+
+    \noindent\fbox{
+        \parbox{\textwidth}{
+             $$P(n,r) = \frac{n!}{(n-r)!}$$
+        }
+    }
+
+    \subsubsection{Non-trivial permutation}
+
+    $n = 4$ students
+
+    $S = \{a,b,c,d \}$
+
+    Take 2 students to a competition.
+
+    $C(4,2) = / \{ \{a,b\}, \{a,c\}, \{a,d\}, \{b, c\}, \{b,d\}, \{c,d\} \} / = 6$
+
+    There is no trivial way to "fill in the blanks" as in previous examples.
+
+    Trying to to $4 \cdot 3 \cdot 2 \cdot 1$ would result in $4!/2!$, but this has to be "un-permuted" to avoid double-counting.
+
+    Final result: $\frac{4!}{2! \cdot 2!}$\\
+
+    \subsection{Combination}
+
+    There are 40000 runners, and 100 will be invited to an event. The order of invites does not matter.
+
+    $C(40000,100) = \frac{40000!}{(40000 - 100)! \cdot 100!}$\\
+
+    \subsubsection{Number of combinations of length $r$ from a set of $n$ elements}
+        \noindent\fbox{
+        \parbox{\textwidth}{
+             $$C(n,r) = \frac{n!}{(n-r)! \cdot r!}$$
+        }
+    }
+    Note: $C(100,99) = C(100,1)$ (edge case)\\
+
+    \subsubsection{Bit strings in permutations}
+
+    Number of bit strings of length 8 having exactly six 1s.
+
+    $n = 8,\ r = 6$
+
+    $C(8,6) = \frac{8!}{(8-6)! \cdot 6!}$ (the order of picking the bits themselves does not matter)
+
+    \newpage
+    \section{Generalized Permutations and Combinations (Rosen 6.5)}
+
+    How many strings of length 10 are there, considering 26 letters (A-Z)?
+
+    By the product rule, $26^{10}$.\\
+
+    \subsection{"Stars and Bars"}
+
+    3 types of fruit. Pick 4 pieces of fruit ($r=4$).
+
+    Apples, oranges and pears (all treated equal to each other within their group.)
+
+    We have "infinite slices", and we can put the names of fruit alphabetically and represent each possible choice as a bitstream.
+
+    For example, a choice of no apples, no oranges, and 4 pears is 110000. The 1s represent "dividers" and the 0s represent fruit choices.
+
+    011000 is 1 apple, 0 oranges, 3 pears.
+
+    How many bitstrings of length 6 exist containing 4 zeros?
+
+    $r = 4,\ n = 3$ types
+
+    $C(n+r-1, r) = C(3+4-1, 4) = C(6,4)$\\
+
+    \subsubsection{Example: dollar bills}
+
+    Take 4 bills from a cash register. There are slots for \$20, \$10, \$5 and \$1.
+
+    $C(4+4-1, 4) = C(7,4)$ ways to do this.\\
+
+    \subsubsection{Example: cookies}
+
+    4 types of cookies, a customer grabs 6 cookies to go.
+
+    A customer's bag must have all flavors.
+
+    $C(4+2-1, 2) = C(5,2)$.\\
+
+    \subsubsection{Example: sum}
+
+    $a+b+c = 13$, with $a,b,c \in \mathbb Z^{\geq 0}$
+
+    $13 + 0 + 0 = 13$
+
+    $\vdots$
+
+    $0 + 0 + 13 = 13$
+
+    $C(15,13)$ ways to do this. (3 [types of variables] + 13 [sum] $- 1$)
+
+    If we change to $a,b,c \in \mathbb Z^+$, we have $C(3 + 10 - 1,\ 10) = C(12,10)$. We start with 3 and try to find which variables can add 10 more.
+
+    \newpage
+    \section{Permutations with Indistinguishable Objects (Rosen 6.5)}
+
+    \subsection{Words with repeated letters}
+
+    In the word SUCCESS, we have 3 equal S characters and 2 equal C characters.
+
+    This results in $\frac{7!}{3!2!1!1!}$ possible arrangements.
+
+    In the word MISSISSIPPI, we have 4 S, 4 I, 2 P.
+
+    This results in $\frac{11!}{4!4!2!}$ possible arrangements.\\
+
+    \subsection{Card game}
+
+    We have 4 unique card players. We deal a hand of 5 cards to each, from a 52-card deck of unique cards.
+
+    This results in $\frac{52!}{5!5!5!5!32!}$ possible arrangements, or $C(52,5) \cdot C(47,5) \cdot C(42,5) \cdot C(37,5)$\\
+
+    \subsection{Basketballs}
+
+    We have 10 indistinguishable basketballs and 8 unique SUVs. It is possible to fit all 10 basketballs in a single SUV.
+
+    Using the Stars and Bars technique,
+
+    SUVs ("types"): A B C D E F G H
+
+    \subsection{Bit strings}
+
+    00000000001111111, or 11100000111100000, and so on.
+
+    $C(17,10)$
+
+    \chapter{Probability (Rosen 7)}
+
+    \section{Finite Probability (Rosen 7.1)}
+
+    \subsection{Definitions}
+
+    \textit{Experiment:} process yielding one of a set of possible outcomes.
+
+    \textit{Sample space:} set of possible outcomes
+
+    \textit{Event space:} subset of sample space
+
+    \subsection{Examples}
+
+    \subsubsection{Socks}
+
+    4 orange socks, 5 blue socks in a drawer.
+
+    What is the probability of retrieving an orange sock?
+
+    P(orange) = $\frac{4}{9}$ = $\frac{/E/}{/S/}$\\
+
+    \subsubsection{Dice}
+
+    Roll 2 dice (6-sided)
+
+    Rolling $<1,2>$ is different than rolling $<2,1>$. There are 36 possible outcomes.
+
+    The possible pairs that add up to 7 are $<1,6>, <2,5>, <3,4>, <4,3>, <5,2>, <6,1>$. There are 6 favourable outcomes.
+
+    P(total = 7) = $\frac{6}{36} = \frac{1}{6}$
+
+    The possible pair that adds up to 12 is $<6,6>$.
+
+    P(total = 12) = $\frac{1}{36}$\\
+
+    \subsubsection{Lottery}
+
+    First prize: pick 4 correct digits. Probability is $\frac{1}{10^4}$ (10 ways for each digit)
+
+    Second prize: pick 3 out of 4 correct digits (value and placement).
+
+    There are 9 ways to "miss" each digit, and 4 possible positions for each digit. Probability is $\frac{36}{10^4}$\\
+
+    \subsubsection{Lottery (again)}
+
+    Let $S$ be the set of positive integers from 1 to 40, just like 40 distinct, numbered balls.
+
+    We will get a subset of 6 numbers with no replacement. To win the game, you must have the 6 correct numbers.
+
+    The probability to win is $\frac{1}{C(40,6)} \approxeq 0.00000026$.
+
+    If replacement was allowed, this would become a Stars and Bars problem.
+
+    The probability would be $\frac{1}{C(40+6-1, 6)} = \frac{1}{C(45,6)}$\\
+
+    \subsubsection{Poker}
+
+    52 cards: 13 ranks $\{2,3,4,5,...,10,J,Q,K,A\}$ $\times$ 4 suits $\{$Spades, Hearts, Clubs, Diamonds$\}$.
+
+    Probability("4 of a kind" given 5-hand card):
+
+    $$\frac{C(13,1) \cdot C(4,4) \cdot C(48,1)}{C(52,5)} = \frac{13 \cdot 48}{C(52,5)}$$\\
+
+    "Full House": 3 of a kind and 2 of a kind (notice that $3Q + 2K \neq 3K + 2Q$)
+
+    $$\frac{C(13,1) \cdot C(4,3) \cdot C(12,1) \cdot C(4,2)}{C(52,5)}$$
+
+    An alternative way to write the numerator is $P(13,2) \cdot C(4,3) \cdot C(4,2)$.\\
+
+    \subsubsection{Number sequence}
+
+    Pick 5 numbers from [1, 50], with no replacement, and order mattering.
+
+    Probability: $\frac{1}{P(50,5)}$
+
+
+    \chapter{Out-of-book}
+
+    \section{Some Practice Exam 4 (Fall 2018) Solutions}
+
+    1. Basis step:
+
+    $f(0) = 6$
+
+    $f(1) = 10$
+
+    Recursive step: $f(n+2) = f(n+1) + f(n)$\\
+
+    2. Shortest members: $\{1,111,11111,1111111,...\}$\\
+
+    3. Given $f(0) = 3$, $f(n) = 2 \cdot f(n-1) + 6$
+
+    $f(1) = 12;\ f(2) = 30$\\
+
+    4. $\Sigma = \{0,1\}$
+
+    Base case: $\lambda \in P,\ 0 \in P, 1 \in P$
+
+    Recursive step: if ($x \in P$ and $w \in \Sigma$) $\rightarrow wxw \in P$\\
+
+    5. Base case: $1 \in S$
+
+    Recursive step: $x \in S \rightarrow x/3 \in S$\\
+
+    6. flipbits($\lambda$) = $\lambda$
+
+    flipbits(0) = 1; flipbits(1) = 0\\
+
+    Recursive step: $\Sigma = \{0,1\}$. $\Sigma^*$ is the Kleene closure (all possible strings that can be formed from the alphabet $\Sigma$)
+
+    (b $\in \Sigma$ and $x \in \Sigma^*$)
+
+    flipbits(bx) = flipbits(b) + flipbits(x)\\
+
+    \section{Solutions to some problems from Rosen 6.5}
+
+    1. TATTLETALES
+
+    Permutations: $\frac{11!}{4!2!2!2!}$\\
+
+    2. 200 students, 4 houses. Using \textit{Stars and bars}, we have $C(200+(4-1), (4-1)) = C(203, 200) = C(203, 3)$ possible ways to assign students to houses.\\
+
+    3. (a) Equation $a_1 + a_2 + a_3 + a_4 + a_5 + a_6 = 100$. Using \textit{Stars and bars}, we have $C(100+(6-1), (6-1)) = C(105, 5)$ possible ways to solve it.
+
+    (b) If we reqire $a_1, a_2 \geq 2$, then we have $C(96+(6-1), (6-1)) = C(101,5) = C(101, 96)$ ways.
+
+    (c) Equation $a_1 + a_2 + a_3 + a_4 + a_5 + a_6 \leq 100$, where $a_n$ are in $\mathbb Z^{\geq 0}$. We have $C(100+(7-1), (7-1)) = C(106,6)$ ways. There is a "hidden" category created.\\
+
+    \section{Material from Recitation Worksheet 2018-11-28}
+
+    \textbf{7. Laundry:} 5 T-shirts, 6 shorts, 3 dress pants, 4 shirts.
+
+    $5!6! + 3!4!$
+
+    $5 \cdot 6 + 3 \cdot 4 = 42$\\
+
+    \textbf{8. String}
+
+    CABDEFGH
+
+    Treat CAB as one letter and permute. This results in $6!$.\\
+
+    \textbf{9. Bit string}
+
+    Length 8, twice as many 0s than 1s. The answer is 0.
+
+\end{document}

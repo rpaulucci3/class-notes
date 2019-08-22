@@ -1,46 +1,68 @@
-\documentclass[english]{exam}
+\documentclass[english,openany]{book}
+\usepackage[utf8]{inputenc}
 \usepackage{babel}
 \usepackage{amssymb,amsmath,listings,parskip}
 \usepackage{csquotes}
 \MakeOuterQuote{"}
 
 \begin{document}
-    
+
+    \title{Some notes from CS 3600: Intro to Artificial Intelligence}
+    \author{Rafael A. O. Paulucci}
+    \date{Fall 2019}
+
+    \maketitle
+
+    \tableofcontents
+
+    \lstset{frame=tb,
+    showstringspaces=false,
+    columns=flexible,
+    basicstyle={\small\ttfamily},
+    numbers=none,
+    breaklines=true,
+    breakatwhitespace=true,
+    tabsize=4
+    }
+
+    \chapter{Introduction}
+
     \section{Pre-requisites and logistics}
-    
+
     $\bullet$ Data structures: lists, graphs, trees...
-    
+
     $\bullet$ Computational complexity (big O). Most algorithms in the class are NP-hard (verifiable in $O(c^{n})$)
-    
+
     $\bullet$ Programming: Python 2.7
-    
+
     \textit{Relation with Machine Learning class: while CS 3600 includes some ML, it is a gentler introduction.}
-    
+
     $\bullet$ Tests are designed around lectures.
-    
+
     $\bullet$ There are readings and 4 graded programming assignments (worth 40\% of the final grade).
-    
+
     $\bullet$ There are 2 exams, each worth 30\% of the final grade. There is no practice exam, but there are practice problems (harder than the exam).
-    
+
     \section{Definitions}
-    
+
     $\bullet$ Artificial intelligence: study of how to replicate intelligence with computing.
-    
+
     $\bullet$ Intelligent: an entity is intelligent if it presents behavior that a person would reasonably believe requires intelligence.
-    
+
     $\bullet$ Turing test: a human "judge" communicates, via teletype, with a computer pretending to be a human and a human pretending to be a computer. If the judge cannot tell the difference, the computer is "intelligent" (assuming the human is intelligent.) This test is not widely used anymore.
 
     In 1950, Turing predicted that, in 50 years, there would be machines that "fool" judges 30\% of the time.
-    
+
     $\bullet$ Deception/deflection: a chatbot could say, "I don't understand your message because I'm not a native English speaker. Could you rephrase?"
-    
+
     $\bullet$ Broad ("strong") AI: emulating humans; beating the Turing test. Being able to do what humans can do.
-    
+
     $\bullet$ Narrow AI: solving a specific task that was originally done by humans.
-    
+
     $\bullet$ "Super-human": AI that is able to perform a task better than an expert human.
-    
+
     $\bullet$ Machine learning (ML): automated discovery of patterns in data and acting on them to make decisions.
-    
+
     $\bullet$ Deep learning: a class of ML algorithms
+
 \end{document}
