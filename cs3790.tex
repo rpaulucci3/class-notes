@@ -4,6 +4,12 @@
 \usepackage{amssymb,amsmath,listings,parskip}
 \usepackage{csquotes}
 \MakeOuterQuote{"}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    allcolors=black,
+    hidelinks
+}
 
 \begin{document}
 
@@ -74,8 +80,197 @@ $\bullet$ Dartmouth Conference (1956): John McCarthy, Marvin Minsky, Allen Newel
 
 $\bullet$ Noam Chomsky: Language is not a learned habit, but an acquired one. We have mental grammars, and an inherited mechanism to acquire languages.
 
-\section{Elements of Cognitive Science}
+\subsection{Elements of Cognitive Science}
 
-$\bullet$ Behavior experiments, computational experiments, grammars and patterns in languages, brain imaging (ablation experiments)
+$\bullet$ Material sourced from behavior experiments, computational experiments, grammars and patterns in languages, brain imaging (ablation experiments)...
+
+\chapter{Comparing Mind to a Program}
+
+\section{C.R.U.M.}
+
+\subsection{Definitions}
+
+$\bullet$ \textbf{C.R.U.M.: Computational -- Representational Understanding of Mind.} The Central Hypothesis: thinking can best be understood in terms of representational structures of the mind, and computational procedures that operate on those structures.
+
+$\bullet$ Logical structures: data structures and algorithms are like representations and procedures. Running a program is like thinking.
+
+$\bullet$ Physical structures: neurons and connections for representations are like the "hardware". Neuron firing and activation for procedures are like processors running algorithms.
+
+$\bullet$ Three-way metaphor: Learning something influences how an algorithm could be designed. Learning how a physical structure works influences the understanding of its logical use.
+
+\subsection{Cognitive Science Model}
+
+$\bullet$ Theory, model, program, platform.
+
+$\bullet$ Cognitive theory: set of representational structures and set of processes that operate on them.
+
+$\bullet$ Computational model: interpret structures and processes by analogy to computing, its data structures and algorithms.
+
+$\bullet$ Program: implement the model in a programming language.
+
+$\bullet$ Platform: the "hardware".
+
+\subsection{Examples}
+
+\subsubsection{Learning to add}
+
+\begin{enumerate}
+    \item Piles of things: counting real-world, tangible objects.
+
+    \item Number system: $1, 2, 3, 4, 5, 6...$
+
+    \item Define concepts such as "larger than" (i.e., in the number system, what appears after is larger; what appears before is not larger)
+    
+    \item Map piles of things to this number system. Get things from a pile until they run out, thus mapping the amount of things to a number. (Mistakes such as skipping, double-counting, incorrectly saying a number etc. happen until enough practice has been done.)'
+    
+    \item Representation: $1 = \bullet,\ 2 = \bullet \bullet,\ 3 = \bullet \bullet \bullet$. Define the "size of a pile."
+    
+    \item Define a symbol for the addition operation: $+$\\ Make it tangible: $\bullet \bullet + \bullet \bullet \bullet = \bullet \bullet \bullet \bullet \bullet$\\
+    The idea of "add" is now the same as "combine piles of things."
+    
+    \item Introduce the concept of bigger numbers, that cannot be so easily represented in piles: $13 + 28 = ?$
+    
+    \item Combine and carry operations: considering each number individually, $(1, 3) + (2, 8) = (3, 11)$. Then, carry: $(3, 11) = (4, 1)$, which is the same as $30 + 11 = 41$.
+\end{enumerate}
+
+$\bullet$ Representations: how are numbers represented, especially when we get to numbers larger than $9$?
+
+$\bullet$ Addition could also have been represented as a computer program, with functions such as \textit{vectorize}, \textit{carry}, \textit{reduce} etc.
+
+\subsubsection{Ordering food from a menu}
+
+$\bullet$ Understanding how each word on the menu maps to a tangible ingredient
+
+$\bullet$ Considering the environment/culture you are in, past experiences in ordering (e.g.: McDonald's burger is different from homemade burger; the restaurant I'm in has served me salty food in the past...)
+
+$\bullet$ Making decisions about the price vs. value of each item
+
+$\bullet$ Deciding the most appropriate form of ordering, and encoding the phrase to be said (or the buttons to be pressed.)
+
+\subsection{Iterative Development}
+
+$\bullet$ Theory, model and program affect one another.
+
+$\bullet$ Value of a working program: does it scale (i.e., is it computationally reasonable)? Is it consistent with observed behavior (psychologically plausible)? Can it predict (human) behavior?
+
+\subsection{Evaluation of the Cognitive Model}
+
+Logic, Rules, Concepts, Analogies, Images, Connections.
+
+\subsubsection{Evaluation criteria}
+
+$\bullet$ Representational power: capabilities and efficiency in representing real-world concepts and objects.
+
+$\bullet$ Computational power: abilities in problem solving, learning and language.
+
+$\bullet$ Psychological plausibility: capabilities in accounting for human cognition qualitatively and quantitatively.
+
+$\bullet$ Neurological plausibility: consistency with neurological observations and knowledge of neural architecture. 
+
+$\bullet$ Practical applicability: how can it be applied to practical situations (e.g.: teaching, driving, making business decisions...)?
+
+\chapter{Logic}
+
+\section{A Brief History}
+
+$\bullet$ Do people think logically? When do they do so? And about what?
+
+$\bullet$ Is logic the backbone of our thinking?
+
+\subsection{Syllogism}
+
+$\bullet$ Aristotle: syllogism (two premises $\therefore$ one conclusion.)
+
+$\bullet$ Possible premises: all A are B; all A are not B.
+
+$\bullet$ Contingent premises: maybe all A are B; maybe all A are not B; some A are B, some A are not B. \textbf{Those are not allowed under this system.}
+
+$\bullet$ Example: ("All X are Z", "Y is X") $\therefore$ "Y is Z"
+
+$\bullet$ The form admits analysis. What is important is the form, not the content.
+
+\subsection{Logicism}
+
+$\bullet$ Gottlob Frege, Bertrand Russell: all of mathematics is reducible to logic.
+
+$\bullet$ Symbols, axioms, rules of inference, and terms such as "all", "some", "class", "relation".
+
+\subsection{Computationalism}
+
+$\bullet$ Alonzo Church, Alan Turing: what's computable? What's effectively calculable?
+
+$\bullet$ John McCarthy: Artificial Intelligence based on logic.
+
+\section{Formal Logic}
+
+\subsection{Propositional Logic}
+
+$\bullet$ Propositions can be true of false
+
+$\bullet$ Letters represent atomic statements (e.g.: P: is it raining; Q: it is cloudy.)
+
+$\bullet$ $\neg P$: not P, $P \rightarrow Q$: if P then Q, $P \lor Q$: P or Q, $P \wedge Q$: P and Q
+
+\subsection{Modal Logic}
+
+$\bullet$ Keith is happy vs. Keith is \textit{usually} happy
+
+$\bullet$ Qualifying propositions: truth (necessarily, possible, impossible), deontic (obligatory, permissible), epistemic (known), doxastic (believed).
+
+\subsection{Predicate Logic}
+
+$\bullet$ Keith is a professor vs. \texttt{is-professor(Keith)}
+
+$\bullet$ Predicates act like truth functions: \texttt{teaches(Keith, CS3790)}
+
+$\bullet$ Quantifiers apply to variables ($\forall, \exists...$)
+
+$\bullet$ Probability functions $P(x)$ assign a value to the truth of a statement $x$, between 0 (false) and 1 (true.)
+
+\subsection{Inference}
+
+% TODO: possibly add example for modus tollens; rules of generalization 
+
+$\bullet$ \textit{Modus ponens}: "affirms by affirming". 
+\\If it's raining, then it's cloudy.\\ It's raining.\\ $\therefore$ It's cloudy.
+
+$\bullet$ \textit{Modus tollens}: "denies by denying".
+
+\newpage
+$\bullet$ Universal instantiation:\\ All meerkats are mammals.\\ Ralph is a meerkat.\\ $\therefore$ Ralph is a mammal.
+
+\subsubsection{Bayes' Rule}
+
+$\bullet$ Probability of an outcome is determined by a prior probability and likelihood based on observed data.
+
+$$P (\textrm{hypothesis } | \textrm{ evidence}) = \frac{P(\textrm{evidence } | \textrm{ hypothesis}) \cdot P(\textrm{hypothesis})}{P(\textrm{evidence})}$$
+
+% TODO: add examples below
+
+\subsubsection{Deductive Inference}
+
+$\bullet$ From general to specific.
+
+\subsubsection{Inductive Inference}
+
+$\bullet$ From specific to general.
+
+% Simple induction, analogical induction
+
+\subsubsection{Abductive Inference}
+
+$\bullet$ From incomplete to best prediction.
+
+\subsection{Examples}
+
+\subsubsection{Wason Selection Task (Four-card Problem)}
+
+$\bullet$ "If a card has a vowel on one side, then it has an even number on the other side." Which cards must be turned to test this hypothesis?
+
+$\bullet$ Example: cards $A, B, 4, 7$. We flip $A$ and $7$.
+
+$\bullet$ People usually get a wrong answer, but binding cards to real-world situations (e.g.: drinking age, other social rules) sharply increases the success rate.
+
+$\bullet$ Contrapositive: "If a card has an odd number on one side, then it cannot have a vowel on the other side."
 
 \end{document}
