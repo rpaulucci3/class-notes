@@ -1,5 +1,6 @@
 \documentclass[english,openany]{book}
 \usepackage[utf8]{inputenc}
+\usepackage{enumitem}
 \usepackage{babel}
 \usepackage{amssymb,amsmath,listings,parskip}
 \usepackage{csquotes}
@@ -96,11 +97,9 @@ $\bullet$ Logical structures: data structures and algorithms are like representa
 
 $\bullet$ Physical structures: neurons and connections for representations are like the "hardware". Neuron firing and activation for procedures are like processors running algorithms.
 
-$\bullet$ Three-way metaphor: Learning something influences how an algorithm could be designed. Learning how a physical structure works influences the understanding of its logical use.
+$\bullet$ Three-way metaphor between mind, brain and computing. Learning something influences how an algorithm could be designed. Learning how a physical structure works influences the understanding of its logical use.
 
 \subsection{Cognitive Science Model}
-
-$\bullet$ Theory, model, program, platform.
 
 $\bullet$ Cognitive theory: set of representational structures and set of processes that operate on them.
 
@@ -120,16 +119,16 @@ $\bullet$ Platform: the "hardware".
     \item Number system: $1, 2, 3, 4, 5, 6...$
 
     \item Define concepts such as "larger than" (i.e., in the number system, what appears after is larger; what appears before is not larger)
-    
+
     \item Map piles of things to this number system. Get things from a pile until they run out, thus mapping the amount of things to a number. (Mistakes such as skipping, double-counting, incorrectly saying a number etc. happen until enough practice has been done.)'
-    
+
     \item Representation: $1 = \bullet,\ 2 = \bullet \bullet,\ 3 = \bullet \bullet \bullet$. Define the "size of a pile."
-    
+
     \item Define a symbol for the addition operation: $+$\\ Make it tangible: $\bullet \bullet + \bullet \bullet \bullet = \bullet \bullet \bullet \bullet \bullet$\\
     The idea of "add" is now the same as "combine piles of things."
-    
+
     \item Introduce the concept of bigger numbers, that cannot be so easily represented in piles: $13 + 28 = ?$
-    
+
     \item Combine and carry operations: considering each number individually, $(1, 3) + (2, 8) = (3, 11)$. Then, carry: $(3, 11) = (4, 1)$, which is the same as $30 + 11 = 41$.
 \end{enumerate}
 
@@ -165,7 +164,7 @@ $\bullet$ Computational power: abilities in problem solving, learning and langua
 
 $\bullet$ Psychological plausibility: capabilities in accounting for human cognition qualitatively and quantitatively.
 
-$\bullet$ Neurological plausibility: consistency with neurological observations and knowledge of neural architecture. 
+$\bullet$ Neurological plausibility: consistency with neurological observations and knowledge of neural architecture.
 
 $\bullet$ Practical applicability: how can it be applied to practical situations (e.g.: teaching, driving, making business decisions...)?
 
@@ -203,7 +202,11 @@ $\bullet$ John McCarthy: Artificial Intelligence based on logic.
 
 \section{Formal Logic}
 
-\subsection{Propositional Logic}
+\subsection{Representational Power}
+
+The representational power of formal logic is high, due to the existence of forms below.
+
+\subsubsection{Propositional Logic}
 
 $\bullet$ Propositions can be true of false
 
@@ -211,13 +214,13 @@ $\bullet$ Letters represent atomic statements (e.g.: P: is it raining; Q: it is 
 
 $\bullet$ $\neg P$: not P, $P \rightarrow Q$: if P then Q, $P \lor Q$: P or Q, $P \wedge Q$: P and Q
 
-\subsection{Modal Logic}
+\subsubsection{Modal Logic}
 
 $\bullet$ Keith is happy vs. Keith is \textit{usually} happy
 
 $\bullet$ Qualifying propositions: truth (necessarily, possible, impossible), deontic (obligatory, permissible), epistemic (known), doxastic (believed).
 
-\subsection{Predicate Logic}
+\subsubsection{Predicate Logic}
 
 $\bullet$ Keith is a professor vs. \texttt{is-professor(Keith)}
 
@@ -227,41 +230,78 @@ $\bullet$ Quantifiers apply to variables ($\forall, \exists...$)
 
 $\bullet$ Probability functions $P(x)$ assign a value to the truth of a statement $x$, between 0 (false) and 1 (true.)
 
-\subsection{Inference}
+\subsubsection{Inference}
 
-% TODO: possibly add example for modus tollens; rules of generalization 
+% TODO: possibly add example for rules of generalization
 
-$\bullet$ \textit{Modus ponens}: "affirms by affirming". 
+$\bullet$ \textit{Modus ponens}: "affirms by affirming".
 \\If it's raining, then it's cloudy.\\ It's raining.\\ $\therefore$ It's cloudy.
 
 $\bullet$ \textit{Modus tollens}: "denies by denying".
+\\If it's raining, then it's cloudy.\\ It's not cloudy.\\ $\therefore$ It's not raining.
 
-\newpage
 $\bullet$ Universal instantiation:\\ All meerkats are mammals.\\ Ralph is a meerkat.\\ $\therefore$ Ralph is a mammal.
 
-\subsubsection{Bayes' Rule}
-
-$\bullet$ Probability of an outcome is determined by a prior probability and likelihood based on observed data.
+$\bullet$ \textbf{Bayes' Rule}: Probability of an outcome is determined by a prior probability and likelihood based on observed data.
 
 $$P (\textrm{hypothesis } | \textrm{ evidence}) = \frac{P(\textrm{evidence } | \textrm{ hypothesis}) \cdot P(\textrm{hypothesis})}{P(\textrm{evidence})}$$
 
 % TODO: add examples below
 
-\subsubsection{Deductive Inference}
+$\bullet$ \textbf{Deductive Inference}: from general to specific.
 
-$\bullet$ From general to specific.
-
-\subsubsection{Inductive Inference}
-
-$\bullet$ From specific to general.
+$\bullet$ \textbf{Inductive Inference}: from specific to general.
 
 % Simple induction, analogical induction
 
-\subsubsection{Abductive Inference}
+$\bullet$ \textbf{Abductive Inference}: From incomplete to best prediction. Forming hypotheses to create explanations.
 
-$\bullet$ From incomplete to best prediction.
+\subsection{Computational Power}
 
-\subsection{Examples}
+\subsubsection{Planning by using pure logic}
+
+$\bullet$ Example: steps for getting a PhD. "Working backwards" using a chain of events.
+
+is-PhDStudent(x) $\wedge$ pass-Qualifier(x) $\wedge$ pass-Proposal(x) $\wedge$ defend-Dissertation(x) $\rightarrow$ has-PhD(x)\\
+
+Goal: has-PhD(x)
+
+defend(x, dissertation) $\rightarrow$ hasPhD(x)
+
+dissertation-ok(x, committee) $\rightarrow$ defend(x, dissertation)
+
+$\bullet$ A lot of inferences are necessary, the process is monotonic, and the model cannot learn from experience.
+
+\subsubsection{Explaining by abductive inference}
+
+$y$ was waiting for $x$ at a location, but $x$ never showed up. Why?
+
+known(studying(x) $\rightarrow$ forgetful(x))\\
+known(forgetful(x) $\rightarrow$ no-show(x))\\
+believed(studying(x))\\
+$\rightarrow$ no-show(x)
+
+But there are other possibilities ($x$ could have been in an accident, could have been to another event etc.)
+
+% TODO: add notes on learning and language
+
+\subsection{Psychological Plausibility}
+
+$\bullet$ Three views:
+
+\begin{enumerate}[label=(\Alph*)]
+    \item Formal logic is an integral part of human reasoning. This view has been defended by Martin Braine and Lance Rips, but breaks with some factually incorrect syllogisms.
+    \item Formal logic is distantly related to human reasoning, but the distance doesn't matter, because logic is only used to provide a mathematical analysis of optimal reasoning.
+    \item Formal logic is so distant from human reasoning that it's better to pursue other approaches, such as mental models that correspond in structure to the situations they represent. This view has been defended by Johnson-Laird and Byrne.
+\end{enumerate}
+
+\subsubsection{Tversky and Kahneman (Rules of Probability example)}
+
+$\bullet$ According to view C, humans tend not to employ logic correctly in scenarios involving rules of probability. For example:
+
+"A person likes to read poetry, watch foreign movies and discuss world politics. How likely is it that this person is a farmer, a college student, or a farmer who is also a college student?"
+
+By probability rules, the least likely of these options would be the last one. However, people tend to (mathematically incorrectly) think the "is a farmer" option is the least likely one.
 
 \subsubsection{Wason Selection Task (Four-card Problem)}
 
@@ -269,8 +309,160 @@ $\bullet$ "If a card has a vowel on one side, then it has an even number on the 
 
 $\bullet$ Example: cards $A, B, 4, 7$. We flip $A$ and $7$.
 
-$\bullet$ People usually get a wrong answer, but binding cards to real-world situations (e.g.: drinking age, other social rules) sharply increases the success rate.
+$\bullet$ People usually get a wrong answer, but binding cards to real-world situations (e.g.: social rules such as, "to be in a bar, you must be of drinking age") increases the success rate. This is thought by Cheng and Holyoak to be due to people approaching these tasks with \textit{pragmatic reasoning schemas}, instead of pure logic.
 
-$\bullet$ Contrapositive: "If a card has an odd number on one side, then it cannot have a vowel on the other side."
+$\bullet$ What most people fail to check is the \textit{modus tollens part}: "If a card has an odd number on one side, then it cannot have a vowel on the other side." This is checked by turning over the card with 7.
+
+\subsection{Neurological Plausibility}
+
+$\bullet$ It is hard to analyze low-level brain activity with pure logic.
+
+$\bullet$ Even for higher-level analysis (such as left side vs. right side of the brain), studies have not been able to find a clear-cut distinction between both sides.
+
+$\bullet$ It has been hypothesized that deduction is formal and independent of content, as well as that deductive reasoning is performed in the left side of the brain. Brain scans by Goel et al. of subjects solving syllogisms seemed to support this view, but Johnson-Laird et al. performed studies that showed the right side of the brain are more active in reasoning than calculation.
+
+\chapter{Rules}
+
+\section{Introduction}
+
+$\bullet$ Do we use rules? How do we choose which rules to follow?
+
+$\bullet$ Do rules play a central role in our ability to think?
+
+$\bullet$ Rule: a structure with a particular format. If \textbf{condition}, then \textbf{action}.
+
+\section{Rules vs. Logic}
+
+$\bullet$ Propositional Logic also features statements of the form $p \rightarrow q$.
+
+$\bullet$ However, rules don't necessarily have to be true (as in a guarantee), unlike in formal logic, where the system would break down if there were inconsistencies.
+
+$\bullet$ Logic Theorists (1956): Herbert Simon, Allen Newell, Cliff Shaw. Attempted to take theorems from \textit{Principia Mathematica} and prove them using computers. They were able to prove 38 out of 52, and found new proofs to several theorems.
+
+$\bullet$ Used rules of inference and strategic rules for finding proofs efficiently. Introduced core ideas to AI, with reasoning as search and heuristics.
+
+$\bullet$ Reasoning as search: from a tree where the root is the hypothesis and the goal is a leaf, which deduction to choose?\\ Uses backtracking, progressive deepening, and pruning.
+
+\subsection{Representational Power}
+
+$\bullet$ Rules can represent many different kinds of knowledge. For example: knowledge about the world; how to do things in the world; knowledge about structures (e.g.: grammar).
+
+$\bullet$ Rules introduce a way to get to language.
+
+$\bullet$ Expressiveness: if you have an if-then rule and the "if" part is true, then the "then" part is true too.
+
+$\bullet$ In a rule, the action may be the default case, but exceptions are OK.
+
+$\bullet$ Not as strong as logic, due to possibly having inconsistencies.
+
+\subsection{Computational Power}
+
+$\bullet$ Problem solving: fundamental premise is that thinking involves searching. We attempt to find a path through the state space that gets from the current state to the goal state.
+
+$\bullet$ A large search space can be generated from something as simple as picking which clothes "go with" other clothes.
+
+$\bullet$ "Problem solving, learning and language can be described as a rules-based heuristics search through a complex space."
+
+\subsubsection{Memory (Rule-based heuristic model)}
+
+$\bullet$ Long-term (consolidated): has explicit and implicit parts. Lasts for days, weeks, years. Limit is not known.
+
+$\bullet$ Short-term: lasts seconds to hours. Readily changeable. Limit is believed to be "small."
+
+$\bullet$ Sensory: lasts instants. Is volatile.
+
+$\bullet$ When "sensing" something in the real world, we recall rules from long-term memory and place them temporarily in short-term memory.
+
+% TODO: rule-based planning definition
+
+\subsubsection{Problem solving}
+
+$\bullet$ Rules are not as helpful when deciding between competing plans.
+
+$\bullet$ Balancing sub-goals requires additional knowledge.
+
+$\bullet$ Forward planning: get to the goal efficiently (optimize for progressing to goal.)
+
+$\bullet$ Backward planning: find sub-goals near final goal (optimize for steps taken.)
+
+$\bullet$ Explanation using rules is stating which rules could be used to reach the goal you know.
+
+$\bullet$ Some rules may be innate.
+
+$\bullet$ Rules can be learned by inductive generalization (examples summarized by a rule.)
+
+$\bullet$ Rules can employ chunking, composition and heuristics to make search efficient.
+
+$\bullet$ Rules can be learned by specialization (for example, abducting traffic predictions based on weather conditions.)
+
+$\bullet$ Slow incremental learning: add weight about the usefulness of rule (for example, how many times the rule has correctly "fired".)
+
+$\bullet$ Examples of Chomsky's argument that language is not a learned habit: people can understand a sentence such as "the squirrel was driving the car", even though they have never really seen this situation happen. Also, people learning languages don't know about irregular verbs, and so attempt to use common rules for them.
+
+$\bullet$ For decision making and explanation, rules are not as "good" as logic.
+
+\subsection{Psychological Plausibility}
+
+$\bullet$ Rules work very well in this aspect.
+
+$\bullet$ People can be conditioned to adhere to some rules.
+
+\chapter{Concepts}
+
+\section{Introduction}
+
+\subsection{Origin of Concepts}
+
+$\bullet$ Symbol grounding problem
+
+$\bullet$ Modal and amodal representations
+
+\subsection{Types of Concepts}
+
+$\bullet$ Axiomatic concepts: defined by a formal set of necessary and sufficient conditions (e.g.: the definition of a circle.)
+
+$\bullet$ Prototype concepts: defined by a typical example with overridable properties (e.g.: a chair can have arms or not, be cushioned or not, but still be a chair.) Maximizes the number of attributes shared in the category, while reducing the number of attributes shared with other categories.
+
+$\bullet$ Exemplar concepts: defined by implicit abstractions of a specific member of the category (e.g.: beauty, dog.)
+
+$\bullet$ \textit{Qualia} concepts: subjective properties of experiences. For example, the taste of a specific kind of food, or "the smell of rain."
+
+\subsection{Quantity of Actions and Percepts}
+
+$\bullet$ If we reasoned about every possible action for every percept, there would be more possible actions than atoms in the Universe, and cognition would not be feasible.
+
+$\bullet$ Equivalence classes: $2^n$ percepts $\rightarrow$ concepts $\rightarrow\ 2^m$ actions
+
+\section{Schema}
+
+$\bullet$ A schema allows for inference by slots, default values, inheritance, or spreading activation.
+
+$\bullet$ For example, respectively: a grocery store (\textit{class}) should have cash registers (\textit{slot}), which are by the doors (\textit{default value}). Since a grocery store is part of the "store" class, one should be able to buy things there (\textit{inheritance}). Also, a store should have a parking lot (\textit{spreading activation}).
+
+$\bullet$ A schema can be used to circumscribe the number of possible actions.
+
+\section{Evaluation}
+
+\subsection{Representational Power}
+
+$\bullet$ Very strong, as sequences of actions can be put into scripts (for example, getting into a restaurant, ordering food, eating it, then paying for it.)
+
+$\bullet$ Inheritance capabilities also contribute to representational power.
+
+\subsection{Computational Power}
+
+$\bullet$ Equivalence classes and matching allow for efficient retrieval. An explanation for something seems "automatic" is a matching concept is found.
+
+$\bullet$ Some care has to be taken to avoid "over-matching" situations. For example, the "script" of actions needed to take a commercial flight and to take a train are similar, but not exactly the same.
+
+$\bullet$ Concepts can be innate, learned from experience, or from other concepts. For a mind with several concepts already formed, forming new ones can come from combination, thereby making "learning" faster.
+
+\subsection{Neurological Plausibility}
+
+$\bullet$ Spreading activation is related to the low-level (neural) architecture of the brain.
+
+$\bullet$ Some famous examples of people who have had brain damage provide insights into how their ability to recall concepts changed after the said damage occurred.
+
+
 
 \end{document}
