@@ -19,6 +19,17 @@
     \date{Fall 2019}
 
     \maketitle
+            \noindent\fbox{%
+    \parbox{\textwidth}{%
+        {\Large\centerline{\textbf{Disclaimer}}}
+        \medskip
+        These notes are based on the following textbook: \textit{Artificial Intelligence: A Modern Approach}, Russell and Norvig, Prentice Hall, 3nd edition, 2010.\\
+        
+        \textbf{These notes are not endorsed by Georgia Tech, the book publisher, or the instructor.} There is no guarantee of correctness in these notes, but they represent a best-effort approach to convey essential points mentioned in class and related materials. The author is not liable for any use you decide to make of the notes.\\
+        
+        More up-to-date versions of these notes may be available at \url{https://github.com/rpaulucci3/class-notes/releases}.
+    }%
+}
 
     \tableofcontents
 
@@ -71,35 +82,35 @@
     $\bullet$ Machine learning (ML): automated discovery of patterns in data and acting on them to make decisions.
 
     $\bullet$ Deep learning: a class of ML algorithms
-
+    
     \section{A Brief History}
-
+    
     % TODO: fill in
-
+    
     \subsection{Early Automata}
-
+    
     \subsection{Computation}
-
+    
     \subsection{Early AI}
-
+    
     \subsection{Knowledge-based AI}
-
+    
     \chapter{Agents}
-
+    
     \section{Definitions}
-
+    
     $\bullet$ \textbf{Agent}: anything that can perceive the environment through \textbf{sensors} and act on it through \textbf{effectors}.
-
+    
     $\bullet$ \textbf{Agent function}: A mathematical description of an agent's behavior (response to environment) that maps sensory percepts to effector actions.
-
+    
     $\bullet$ \textbf{Agent program}: A concrete implementation of the agent function.
-
+    
     \section{Agent Functions}
-
+    
     $\bullet$ Naively, we could map sensed percepts to specific responses through a table.
-
+    
     $\bullet$ Picture a vampire, whose objective is to suck blood, in a mansion with 2 rooms ($A$ and $B$) side-by-side. The vampire can perform 3 actions: go left, go right, and suck blood.
-
+    
     \begin{tabular}{|c|c|}
         \hline
         Percept & Action\\
@@ -110,50 +121,50 @@
         ($B$, is empty) & Go left\\
         \hline
     \end{tabular}
-
+    
     $\bullet$ Problems with this approach: if there are many rooms, the table could be too large to fit in memory. It could even be "infinite", in the case of an "open world."
-
+    
     $\bullet$ A more sophisticated approach is to follow a procedure for writing an agent program:
-
+    
     \begin{enumerate}
         \item Objective function: what is the agent trying to accomplish? Are we succeeding or not?
         \item Actions: how actions can change the world
         \item Sensors: what kinds of percepts are available
         \item Prior knowledge: what information is preloaded into the agent
     \end{enumerate}
-
+    
     $\bullet$ Principle of rationality: Of all my actions, which gets me closer to my objective? I need to choose the "best" action based on what I know.
-
+    
     $\bullet$ For this example, our objective function could be maximizing the number of people whose blood has been sucked.
-
+    
     % TODO: scenarios
-
+    
     \section{Environment Types}
-
+    
     $\bullet$ Fully observable: can sense everything without error.
-
+    
     $\bullet$ Partially observable: can only sense some information due to noise and/or incomplete data.\\
-
+    
     $\bullet$ Deterministic: world changes exactly as desired.
-
+    
     $\bullet$ Stochastic: world has randomness. Uncertain effectors. Action uncertainty and sensor uncertainty.\\
-
+    
     $\bullet$ Discrete: world broken into finite number of chunks.
-
+    
     $\bullet$ Continuous: world has inifnite chunks and graduations of values.\\
-
+    
     $\bullet$ Episodic: prior occurrences do not affect current action choice.
-
+    
     $\bullet$ Sequential: history matters. Current choice of action affects future choices.\\
-
+    
     $\bullet$ Static: changes do not happen while agent is "thinking".
-
+    
     $\bullet$ Dynamic: changes happen while agent is "thinking".\\
-
+    
     $\bullet$ Single-agent: there is only one agent.
-
+    
     $\bullet$ Multi-agent: there are other agents, which can be cooperative or competitive.\\
-
+    
     \begin{tabular}{|c|c|c|c|c|c|c|}
         \hline
         & Hanoi & Solitaire & Chess & Pool & Poker & Driving \\
@@ -166,55 +177,55 @@
         Agents & Single & Single & Multi & Multi & Multi & Multi\\
         \hline
     \end{tabular}\\
-
+    
     \subsection{Stages of Development}
-
+    
     \begin{enumerate}
         \item Fully observable, deterministic
-
+    
         \item Fully observable, stochastic
-
+    
         \item Partially observable
-
-        \item Optimization, machine learning
+    
+        \item Optimization, machine learning 
     \end{enumerate}
-
+    
     \section{Searching}
-
+    
     $\bullet$ State: unique configuration of the world and relevant facts needed for the agent to make decisions. Includes the environment and the agent itself, in relation to it.
-
+    
     $\bullet$ Initial state: describes the state the agent is in before searching for the solution.
-
+    
     $\bullet$ Goal situation: state(s) that the agent desires to be at (objective function).
-
+    
     $\bullet$ Problem: agent is not at the goal state and doesn't know how to get there. We search when we don't know any other way of getting to the goal.
-
+    
     $\bullet$ Actions: means of transforming the state. Describe transitions between states, according to a set of rules.
-
+    
     $\bullet$ Search problem: find a sequence of actions that transforms the initial state to a state in which the goal situation is recognized.
-
+    
     $\bullet$ Solution: a sequence of actions. If executed, will bring the agent to a goal situation.
-
+    
     $\bullet$ State spaces: set of legal states. Tend to have a large number of states.
-
+    
     $\bullet$ Types of search algorithms: brute-force (uninformed, tries every possible path) and informed (uses prior knowledge.)\\
 
     $\bullet$ Searching for paths in maps is an example of fully observable, deterministic, sequential, static, discrete scenario.
-
+    
     $\bullet$ States: street intersections (decision points.)
-
+    
     $\bullet$ Actions: taking roads (change the state.)
-
+    
     $\bullet$ Another example is an \textit{8-Puzzle}.\\
-
+    
     \subsection{Successor function}
-
+    
     % todo: pseudocode
-
+    
     A = set of actions $\{a_1, a_2, ..., a_n\}$
-
+    
     s = state you are in
-
+    
     \begin{lstlisting}
     successors(s, A):
         s = {}
@@ -223,69 +234,69 @@
             s += s'
         return s
     \end{lstlisting}
-
+    
     Put it to use:
-
+    
     \begin{itemize}
         \item s is initial state
         \item s = successors(s, A)
         \item s = pick a successor from s
         \item If s is not goal, go to 2
     \end{itemize}
-
+    
     Problems:
-
+    
     \begin{enumerate}[label=(\Alph*)]
         \item Might get into loops
         \item Might never find the goal
         \item It's inefficient
     \end{enumerate}
-
+    
     Fixes:
-
+    
     \begin{enumerate}[label=(\Alph*)]
         \item Remember where we have been
         \item Be systematic about which states we explore
     \end{enumerate}
-
+    
     \newpage
     \subsection{Generic Search Algorithm}
-
+    
     \begin{lstlisting}
         actions = {actions}
         closed = nil
         open = fringe # states we know to exist but have not visited yet
         current = initial_state
-
+        
         while (!isGoal(current) && open != nil):
             closed += current
             open = open - current XOR (successors(current, actions) - closed)
             current = next(open)
-
+            
         if (isGoal(current)):
             report success
         else:
             report failure
     \end{lstlisting}
-
+    
     If \texttt{open} is a queue, this is \textit{breadth-first search}.
-
+    
     If \texttt{open} is a stack, this is \textit{depth-first search}.
-
+    
     If \texttt{open} is a priority queue (maybe implemented with insert sort), this is \textit{uniform-cost search} or $A*$.
-
+    
     Note: in a tree, every child keeps track of its parent, because the parent generated the child during the traversal.
-
+    
     \subsection{Evaluating Algorithms}
-
+    
     $\bullet$ Completeness: does it always find a solution (if a solution exists)? Can it visit all the states?
-
+    
     $\bullet$ Time complexity: how many states are generated?
-
+    
     $\bullet$ Space complexity: how many states are kept in memory at a given time?
-
+    
     $\bullet$ Optimality: does it always generate the most efficient solution?\\
-
+    
     \begin{tabular}{|c|c|c|}
         \hline
         & BFS & DFS  \\
@@ -296,31 +307,31 @@
         Optimal? & Yes (\textit{w.r.t.} no. of actions) & No\\
         \hline
     \end{tabular}
-
+    
     Branching factor ($b$): the average number of successors
-
+    
     Depth ($d$): the depth of the solution
-
+    
     Maximum depth ($m$): the max. depth of the solution found
-
+    
     The average time for DFS is better than the one for BFS
-
+    
     \subsection{Uniform Cost Search}
-
+    
     $\bullet$ Optimal: smallest total action cost
-
+    
     $\bullet$ $g(s)$ is the total action cost of a path (from the initial state)
-
+    
     $\bullet$ Open list is a priority queue, sorted on $g(s)$ (possibly by insert sort)
-
+    
     $\bullet$ Priority queue might have to be re-sorted
-
+    
     $\bullet$ Keep track of parents, as they might change when  a shorter path is discovered
-
+    
     $\bullet$ Don't terminate the search early (i.e., when you "find" the goal.)
-
+    
     $\bullet$ Not the same is Dijkstra's, as that is single-source, all-destination. UCS is single-source, single-destination.\\
-
+    
     \begin{tabular}{|c|c|}
         \hline
         & UCS  \\
@@ -331,27 +342,27 @@
         Optimal? & Yes (\textit{w.r.t.} cost of actions)\\
         \hline
     \end{tabular}
-
+    
     \subsection{Heuristic Search}
-
+    
     $\bullet$ A "rule of thumb" that helps us solve a problem
-
+    
     $\bullet$ Humans have intuitions. Can we "transfer" them to an algorithm?
-
+    
     $\bullet$ Heuristics tells us how to "focus" our search.
-
+    
     $\bullet$ Heuristic function $h(s)$: $h$ is a measure of "how good" this state is. Heuristic is an estimate of how far the state is from a goal state.
-
+    
     \subsubsection{A*}
-
+    
     $\bullet$ Merge UCS and greedy best first
-
+    
     $\bullet$ Sort open list on $f(s) = g(s) + h(s)$
-
+    
     $\bullet$ $g(s)$ "looks at the past", being "pessimistic"
-
+    
     $\bullet$ $h(s)$ "looks into the future", being "eager"
-
+    
     \begin{tabular}{|c|c|}
         \hline
         & A*  \\
@@ -362,67 +373,67 @@
         Optimal? & Depends on the heuristic\\
         \hline
     \end{tabular}\\
-
+    
     \subsubsection{Concepts}
-
+    
     $\bullet$ Informedness: number of states in state space / average number of states explored using $h$.
-
+    
     $\bullet$ Dominance: A heuristic $h_1$ dominates $h_2$ if $\forall$ states $s$, $h_2 (s_i) \leq h_1(s_i) \leq h^*(s_i)$
-
+    
     $\bullet$ If the heuristic underestimates too much, A* tends to spend time in parts of the state space that may not lead to the solution.
-
+    
     $\bullet$ Consistent heuristic: $h(a) - h(b) \leq K(a,b)$, where $K$ is the true cost.
-
+    
     $\bullet$ Consistent heuristics are admissible. Consistency reduces the average time to solve the problem.
-
+    
     $\bullet$ Relaxing a problem: if a simpler version of a problem can be solved exactly in polynomial or linear time, the exact solver for the simpler problem can be used as a heuristic for the original problem.
-
+    
     \subsection{Introducing Action Stochasticity}
-
+    
     $\bullet$ Utility theory: given an actions $a_1, a_2$, with results $a_j$ for $i = 1$ to $N$, which action is best?
-
+    
     $\bullet$ Expected utility: $EU(a) = \sum_{i=1}^{N} (P(\texttt{result}_i (a)) \cdot U(\texttt{result}_i (a)))$, where $P$ is the probability of result and $U$ is the utility ("goodness score") of result.
-
+    
     $\bullet$ In sequential problems, utility is not always clear. Some states give rewards for the agent being in them, and some do not.
-
+    
     $\bullet$ Example of action stochasticity: an agent is moving on a grid, but for each movement, there is 10\% chance that it will drift left, and a 10\% change it will drift right.
-
-
+    
+    
     \section{Optimal Policy}
-
+    
     $$\pi*(s) = argmax(\sum_{s' \in S} T(s, a, s') \cdot U(s'))$$
-
+    
     We don't know $U(s)$.
-
+    
     $\bullet$ Reward represents the points for being in a state. Utility represents how much is the future reward from a state.
-
+    
     $\bullet$ Additive utility: $U(s_0) = U(s_o ... s_n) = R(s_0) + R(s_1) + ... + R(s_n)$\\
     Then take the max over all possible future sequences of all possible lengths.
-
+    
     $\bullet$ Discounted utility: $U(s_0) = U(s_o ... s_n) = R(s_0) + \gamma R(s_1) + \gamma^2 R(s_2) + ... + \gamma^n R(s_n)$\\
     $\gamma$ is a discount value, $0 < \gamma \leq 1$\\
     The effect of this is to "trust" the reward of further states less and less.
-
-    $\bullet$ Bellman equation:
-
+    
+    $\bullet$ Bellman equation: 
+    
     $$ U(s) = R(s) + \gamma \max_{a \in A} (\sum_{s' \in S} T(s, a, s') \cdot U(s')) $$
-
+    
     \subsection{Value Iteration}
-
+    
     $\bullet$ Start with random utilities for all states, except sink states. Set the utility of sink states to their reward value.
-
+    
     $\bullet$ Update the utilities in non-sink states using the Bellman equation until they converge on the true utility values.
-
+    
     $\bullet$ $U_i (s)$ is the utility of the state $s$ after $i$ iterations of this process.
-
+    
     $\bullet$ Bellman update (not a recursive equation anymore):
-
+    
     $$ U_{i+1} (s) = R(s) + \gamma \max_{a \in A} (\sum_{s' \in S} T(s, a, s') \cdot U_i (s')) $$
-
+    
     $\bullet$ Do this for all states $s$.
-
+    
     $\bullet$ Do iterations $i = 1 ... n$ and numbers will converge
-
+    
     $\bullet$ Reward propagates to neighbors. Transition function means only a fraction of future reward propagates.
-
+    
 \end{document}
